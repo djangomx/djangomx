@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+.DS_Store
+=======
 .DS_Store
 *.pyc
 *.pyo
@@ -16,3 +19,4 @@ virtualenv
 .idea/*
 media/
 static/CACHE
+>>>>>>> 3df36eb5a26cde03ff5aa10c18aa8dbf638fe81b
