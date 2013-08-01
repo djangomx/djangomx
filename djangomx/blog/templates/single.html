@@ -1,0 +1,38 @@
+{% extends "base-blog.html" %}
+{% load compress %}
+
+{% block title%} {{ post.title }} | Django México {% endblock %}
+
+{% block breadcumb %}
+	<ul class="breadcrumb">
+  		<li><a href="/">Inicio</a> <span class="divider">/</span></li>
+  		<li><a href="{% url 'home' %}">Blog</a> <span class="divider">/</span></li>
+  		<li class="active">{{ post.title }}</li>
+	</ul>
+{% endblock %}
+
+{% block content %}
+	<div class="row-fluid">
+		<div class="span9">
+			<h3>{{ post.title }}</h3>
+
+			<p class="meta">
+				{{item.date_publish | date:"j F, Y"}}
+			</p>
+
+			{{ post.content | safe }}
+
+			<p class="meta">
+				{% for category in post.categories.all %}
+				<a class="btn" href="{% url 'blog-category-archive' slug=category.slug %}">{{ category.title }}</a>
+				{% endfor %}
+			</p>
+
+			{% if request.user.is_staff %}
+				<a class="edit-link" href="{{ post.get_admin_url }}">Editar</a>
+			{% endif %} 
+
+			<hr />
+
+	</div>
+{% endblock %}

@@ -1,1 +1,22 @@
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+*.pyc
+*.pyo
+*.swp
+
+local_settings.py
+*.db
+
+virtualenv
+.codeintel
+*.sublime-project
+*.sublime-workspace
+
+/public
+.idea/
+.idea/*
+media/
+static/CACHE
+>>>>>>> 3df36eb5a26cde03ff5aa10c18aa8dbf638fe81b

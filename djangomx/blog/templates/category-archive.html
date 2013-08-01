@@ -1,0 +1,65 @@
+{% extends "base-blog.html" %}
+{% load compress %}
+
+{% block title%} Archivo {{ category.title }} | Django México {% endblock %}
+
+{% block breadcumb %}
+	<ul class="breadcrumb">
+  		<li><a href="/">Inicio</a> <span class="divider">/</span></li>
+  		<li><a href="{% url 'home' %}">Blog</a> <span class="divider">/</span></li>
+  		<li class="active">{{ category.title }}</li>
+	</ul>
+{% endblock %}
+
+{% block content %}
+	<div class="row-fluid">
+		<div class="span9">
+			<h3>{Categoría { category.title }}</h3>
+
+			{% for item in posts %}
+
+			<article>
+
+				<h4 class="title">
+					<a href="{% url 'blog-post-single' slug=item.slug %}">{{ item.title }}</a>
+				</h4>
+
+				<div class="meta">
+				{{item.date_publish | date:"j F, Y"}}
+				</div>
+
+				<div class="text">
+
+					{{ post.content | safe }}
+					
+				</div>
+				
+			</article>
+
+			<hr />
+			{% endfor %}
+
+			<div class="pagination pagination-small pagination-centered">
+				<ul>
+				{% if articles.has_previous %}
+					<li><a href="?page={{ articles.previous_page_number }}">Anteriores</a></li>
+
+				{% else %}
+
+					<li class="disabled"><span>Anteriores</span></li>
+
+				{% endif %}
+
+				<li class="active"><span>{{ articles.number }}</span></li>
+
+				{% if posts.has_next %}
+					<li><a href="?page={{ articles.next_page_number }}">Siguientes</a></li>
+
+				{% else %}
+
+					<li class="disabled"><span>Siguientes</span></li>
+				{% endif %}
+				</ul>
+			</div>
+	</div>
+{% endblock %}
