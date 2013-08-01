@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 {% load compress %}
 
-{% block title%}Home{% endblock %}
+{% block title%}Django México{% endblock %}
 
 {% block content %}
-    <h1>Home</h1>
+
+    <div class="content">
+
+        <img src="{{ STATIC_URL }}img/dyango.png">
+
+
+        <div class="headline">
+            <h2>Próximamente</h2>
+        </div>
+
+        <div class="progress progress-count progress-striped active">
+            <div class="bar" style="width:10%;"></div>
+        </div>
+    </div>
+
+
+
 {% endblock %}
