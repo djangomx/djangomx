@@ -130,12 +130,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'compressor',
-    'tinymce', 
-    
+    'tinymce',
+
+    'userdj',
     'blog',  # Blog module
     'project'
 
 )
+
+AUTH_USER_MODEL = 'userdj.User'
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
