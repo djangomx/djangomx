@@ -1,5 +1,5 @@
-Django
-django-annoying
-django-compressor
-MySQL-python
-django-suit
+Django==1.6
+django-annoying==0.7.7
+django-compressor==1.3
+MySQL-python==1.2.4
+django-suit==0.2.5
