@@ -12,4 +12,5 @@ virtualenv
 *.sublime-workspace
 
 media/
+public/
 CACHE/
