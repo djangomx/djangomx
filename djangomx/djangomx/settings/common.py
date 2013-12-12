@@ -132,8 +132,6 @@ INSTALLED_APPS = (
     'compressor',
 )
 
-AUTH_USER_MODEL = 'userdj.User'
-
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
 COMPRESS_PRECOMPILERS = (
