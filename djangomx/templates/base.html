@@ -1,64 +1,35 @@
 <!DOCTYPE html>
 {% load compress %}
-<html>
-<head>
-
-    <title>{% block title%}{% endblock %}</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title%}Django México{% endblock %}</title>
+    <!-- Apple Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     {% compress css %}
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap-theme.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/main.less" rel="stylesheet" type="text/less">
     {% endcompress %}
 
+    <!-- 
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}ico/apple-touch-icon-57-precomposed.png">
+    -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}ico/favicon.ico">
+
+    <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 </head>
+
 <body>
-
-<!-- Fixed navbar -->
-<div class="navbar navbar-fixed-top">
-
-    <div class="container">
-
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
-        <a class="navbar-brand" href="#">Django México</a>
-
-        <div class="nav-collapse collapse">
-
-            <ul class="nav navbar-nav pull-right">
-                <li><a href="#">Trabajos</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
-
-<div class="lightnav">
-
-</div>
-
-<div class="container">
-
-    {% block container %}
-    {% endblock %}
-
-</div> <!-- /container -->
-
-
-
-
-<!-- JavaScript plugins (requires jQuery) -->
-<script src="http://code.jquery.com/jquery.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    {% block content %}{% endblock %}
 </body>
 </html>

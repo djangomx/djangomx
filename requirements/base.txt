@@ -1,0 +1,5 @@
+Django
+django-annoying
+django-compressor
+MySQL-python
+django-suit
