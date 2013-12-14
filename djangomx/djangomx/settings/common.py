@@ -128,6 +128,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'compressor',
+
+    'blog',
+    'contact',
+    'courses',
+    'jobs',
 )
 
 COMPRESS_ENABLED = True
