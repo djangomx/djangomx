@@ -71,13 +71,25 @@
     </div>
 </div>
 
-<div class="jumbotron">
-    <form class="form-inline" role="form" action="" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input type="text" class="form-control" id="" placeholder="tu correo" name="email">
+<section id="newsletter" class="section active-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="overview">
+                    <h1>Mantente informado</h1>
+                    <p class="lead">Join thousands of awesome people, there's only one thing to do. Subscribe !</p>
+                </div>
+                <form role="form" action="" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" placeholder="Ingresa tu correo">
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-default" type="button">Suscribete</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <button type="submit" class="btn btn-lg btn-success">Suscribete</button>
-    </form>
-</div>
+    </div>
+</section>
 {% endblock %}
