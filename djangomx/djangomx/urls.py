@@ -14,9 +14,9 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^blog/', include('blog.urls')),
-    url(r'^contact/', include('contact.urls')),
-    url(r'^courses/', include('courses.urls')),
-    url(r'^jobs/', include('jobs.urls')),
+    url(r'^contacto/', include('contact.urls')),
+    url(r'^cursos/', include('courses.urls')),
+    url(r'^trabajos/', include('jobs.urls')),
 
     url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     url(r'^500/$', TemplateView.as_view(template_name='500.html')),
