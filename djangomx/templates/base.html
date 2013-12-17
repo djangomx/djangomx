@@ -44,11 +44,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{% url 'home' %}">Inicio</a></li>
-                    <li><a href="{% url 'jobs_home' %}">Trabajos</a></li>
-                    <li><a href="{% url 'blog_home' %}">Blog</a></li>
-                    <li><a href="{% url 'courses_home' %}">Cursos</a></li>
-                    <li><a href="{% url 'contact_home' %}">Contacto</a></li>
+                    <li {% block activehome %}{% endblock %}><a href="{% url 'home' %}">Inicio</a></li>
+                    <li {% block activejobs %}{% endblock %}><a href="{% url 'jobs_home' %}">Trabajos</a></li>
+                    <li {% block activeblog %}{% endblock %}><a href="{% url 'blog_home' %}">Blog</a></li>
+                    <li {% block activecourse %}{% endblock %}><a href="{% url 'courses_home' %}">Cursos</a></li>
+                    <li {% block activecontact %}{% endblock %}><a href="{% url 'contact_home' %}">Contacto</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
