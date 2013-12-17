@@ -1,4 +1,5 @@
-body {
+// Basic
+body, h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     color: #323A44;
@@ -7,12 +8,20 @@ body {
 .jumbotron {
     text-align: center;
     background-color: transparent;
+    margin-bottom: 80px;
+    margin-top: 50px;
+    h2 {
+        margin-bottom: 40px;
+    }
+
 }
 
 .featurette-heading {
     margin-top: 50px;
 }
 
+
+// Navbar
 .navbar-static-top {
     background-color: #323A44;
     height: 150px;
@@ -39,6 +48,7 @@ body {
 
 .navbar-brand, .navbar-nav > li > a {
     text-shadow: none;
+    padding: 10px 20px;
 }
 
 .navbar-green {
@@ -46,3 +56,27 @@ body {
     background-color: #50AE84;
 }
 
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #FFF;
+    background-color: #50AE84;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #50AE84;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a {
+    background-image: none;
+}
+
+// Home features
+.featurette {
+    margin-bottom: 100px;
+    .featurette-image {
+        margin: 10px auto;
+    }
+}
