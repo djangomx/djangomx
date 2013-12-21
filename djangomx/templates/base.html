@@ -13,6 +13,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic" rel="stylesheet" type="text/css">
     {% compress css %}
+    <link href="{{ STATIC_URL }}css/animate.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/main.less" rel="stylesheet" type="text/less">
     {% endcompress %}
@@ -59,5 +60,14 @@
     <footer>
         <p>© Copyright django.mx · 2014 · All rights reserved.</p>
     </footer>
+    {% compress js %}
+    <script type="text/javascript">
+    $(function() {
+        $('#welcome-h2').addClass('animated fadeInDown');
+        $('#welcome-p').addClass('animated fadeInUp');
+        $('.feature-box').addClass('animated fadeInUp');
+    });
+    </script>
+    {% endcompress %}
 </body>
 </html>

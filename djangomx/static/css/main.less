@@ -5,6 +5,16 @@ body {
     color: #323A44;
 }
 
+::selection {
+    background: #50AE84;
+    color: #FFF;
+    }
+
+::-moz-selection {
+    background: #50AE84;
+    color: #FFF;
+}
+
 .jumbotron {
     text-align: center;
     background-color: transparent;
@@ -83,8 +93,43 @@ body {
     }
 }
 
+.feature-row {
+    margin-bottom: 50px;
+    .col-lg-4 {
+        .feature-box {
+            background-color: #fff;
+            padding: 2em 1.5em 1em;
+            text-align: center;
+            border: 7px solid #fff;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            -ms-transition: all 0.2s ease-in-out;
+            -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            p {
+                height: 100px;
+                display: table;
+            }
+        }
+        .feature-box:hover {
+            box-shadow: 0 0px 150px 7px rgba(0,0,0,0.25);
+            -webkit-box-shadow: 0 0px 150px 7px rgba(0,0,0,0.25);
+            border: 7px solid #fff;
+
+            -moz-transform: scale(1.02) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+            -webkit-transform: scale(1.02) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+            -o-transform: scale(1.02) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+            -ms-transform: scale(1.02) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+            transform: scale(1.02) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+        }
+    }
+}
 
 #newsletter {
+    margin-top: 100px;
     text-align: center;
     form {
         width: 50%;
