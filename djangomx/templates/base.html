@@ -57,8 +57,18 @@
     <div class="container">
     {% block content %}{% endblock %}
     </div>
+    <section class="social-section">
+        <div>
+            <a href="https://www.facebook.com/django.mexico" class="btn btn-default btn-lg" role="button">
+                <img src="{{ STATIC_URL }}img/social-facebook.png"> Facebook
+            </a>
+            <!--
+            <a href="#" class="btn btn-default btn-lg" role="button"><img src="{{ STATIC_URL }}img/social-twitter.png"></a>
+            -->
+        </div>
+    </section>
     <footer>
-        <p>© Copyright django.mx · 2014 · All rights reserved.</p>
+        <small>© Copyright django.mx · 2014 · All rights reserved.</small>
     </footer>
     {% compress js %}
     <script type="text/javascript">
