@@ -45,7 +45,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li {% block activehome %}{% endblock %}><a href="{% url 'home' %}">Inicio</a></li>
-                    <li {% block activejobs %}{% endblock %}><a href="{% url 'jobs_home' %}">Trabajos</a></li>
+                    <li {% block activejobs %}{% endblock %}><a href="{% url 'jobs_home' %}">Ofertas de Trabajo</a></li>
                     <li {% block activeblog %}{% endblock %}><a href="{% url 'blog_home' %}">Blog</a></li>
                     <li {% block activecourse %}{% endblock %}><a href="{% url 'courses_home' %}">Cursos</a></li>
                     <li {% block activecontact %}{% endblock %}><a href="{% url 'contact_home' %}">Contacto</a></li>
@@ -68,7 +68,7 @@
         </div>
     </section>
     <footer>
-        <small>© Copyright django.mx · 2014 · All rights reserved.</small>
+        <small>© Copyright Derecho de Autor · dubnio.com · django.mx · 2014 · Todos los derechos reservados</small>
     </footer>
     {% compress js %}
     <script type="text/javascript">
