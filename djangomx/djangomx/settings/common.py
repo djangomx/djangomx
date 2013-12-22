@@ -14,17 +14,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    },
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -129,10 +118,16 @@ INSTALLED_APPS = (
 
     'compressor',
 
+    'django_extensions',
+    'sorl.thumbnail',
+    'newsletter',
+
     'blog',
     'contact',
     'courses',
     'jobs',
+
+    'south',
 )
 
 COMPRESS_ENABLED = True
@@ -169,3 +164,10 @@ LOGGING = {
         },
     }
 }
+
+NEWSLETTER_CONFIRM_EMAIL = False
+
+try:
+    from secret_settings import *
+except ImportError:
+    assert False, "No secret settings set"

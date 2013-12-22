@@ -65,12 +65,12 @@
                     <h1>Mantente informado</h1>
                     <p class="lead">¡Únete al grupo de desarrolladores django en México!</p>
                 </div>
-                <form role="form" action="" method="post">
+                <form id="newsletter-form" role="form" action="" method="post">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control input-lg" placeholder="Ingresa tu correo">
+                        <input type="text" class="form-control input-lg" placeholder="Ingresa tu correo" name="email_field">
                         <span class="input-group-btn">
-                            <button class="btn btn-lg btn-default" type="button">Suscribete</button>
+                            <button class="btn btn-lg btn-default" type="submit">Suscribete</button>
                         </span>
                     </div>
                 </form>

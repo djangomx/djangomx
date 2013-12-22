@@ -71,13 +71,7 @@
         <small>© Copyright Derecho de Autor · dubnio.com · django.mx · 2014 · Todos los derechos reservados</small>
     </footer>
     {% compress js %}
-    <script type="text/javascript">
-    $(function() {
-        $('#welcome-h2').addClass('animated fadeInDown');
-        $('#welcome-p').addClass('animated fadeInUp');
-        $('.feature-box').addClass('animated fadeInUp');
-    });
-    </script>
+    <script src="{{ STATIC_URL }}js/djangomx.js" type="text/javascript"></script>
     {% endcompress %}
 </body>
 </html>
