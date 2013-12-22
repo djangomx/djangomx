@@ -13,7 +13,7 @@ def subscribe_request(request):
             newsletter=newsletter, data=request.POST
         )
         if form.is_valid():
-            subscription = form.save(commite=False)
+            subscription = form.save(commit=False)
             subscription.active = True
             subscription.save()
             return {'success': True}
