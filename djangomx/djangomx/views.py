@@ -14,7 +14,7 @@ def subscribe_request(request):
         )
         if form.is_valid():
             subscription = form.save(commit=False)
-            subscription.active = True
+            subscription.subscribed = True
             subscription.save()
             return {'success': True}
         else:
