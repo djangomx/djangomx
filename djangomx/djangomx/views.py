@@ -6,13 +6,16 @@ from newsletter.models import Newsletter
 
 @ajax_request
 def subscribe_request(request):
+    """ Adds a new subscription """
     newsletter = Newsletter.objects.get(id=1)
     if request.POST:
         form = SubscribeRequestForm(
             newsletter=newsletter, data=request.POST
         )
         if form.is_valid():
-            form.save()
+            subscription = form.save(commite=False)
+            subscription.active = True
+            subscription.save()
             return {'success': True}
         else:
             return {'success': False}
@@ -21,4 +24,5 @@ def subscribe_request(request):
 
 @render_to("home.html")
 def home(request):
+    """ Renders django.mx home page """
     return {}
