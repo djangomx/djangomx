@@ -1,9 +1,88 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load thumbnail %}
 
 {% block title%}Django México - Trabajos{% endblock %}
 {% block activejobs %}class="active"{% endblock %}
 
 {% block content %}
-<h1>Jobs</h1>
+<div class="row">
+    <div class="jumbotron">
+        <h2 class="welcome-h2">Encuentra algun desarrollador Django!</h2>
+        <p class="welcome-p">Postea tu oferta de trabajo rapido y ponte en contacto con un desarrollador django en México.</p>
+    </div> 
+</div>
+
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+        {% for object in jobs %}
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            {{ object.title }}
+                        </a>
+                        <span class="job-date pull-right">{{ object.created_at | date:"D d M Y" }}</span>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        {{ object.content | safe}}
+                        {% thumbnail object.image "100x100" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <h4>Aún no existen ofertas de trabajo.</h4>
+        {% endfor %}
+    </div><!--/span-->
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
+            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#job-modal">
+                Agrega una oferta de trabajo
+            </button>
+            <!-- Button trigger modal -->
+        </div>
+    </div><!--/span-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="job-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="add-job-form" method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Agrega una nueva oferta de trabajo.</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form.media }}
+                        <div class="form-group">
+                            <label for="title">* Titulo:</label>
+                            <input type="text" class="form-control" id="id_title" placeholder="Jr. Developer" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">* Correo de contacto:</label>
+                            <input type="email" class="form-control" id="id_contact" placeholder="a@b.com" name="contact">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">* Contenido:</label>
+                            {{ form.content }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-default">Guardar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </form>
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
 {% endblock %}

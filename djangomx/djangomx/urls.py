@@ -17,7 +17,7 @@ urlpatterns = patterns(
     url(r'^blog/', include('blog.urls')),
     url(r'^contacto/', include('contact.urls')),
     url(r'^cursos/', include('courses.urls')),
-    url(r'^trabajos/', include('jobs.urls')),
+    url(r'^ofertas/', include('jobs.urls')),
 
     url(r'^newsletter/', include('newsletter.urls')),
 
