@@ -11,4 +11,3 @@ bpython
 South==0.8.4
 PIL
 redis
--e git://github.com/mazelife/django-redactor.git@ae35b6c454661cc6140cf5f29c0b2da3b96251ce#egg=django_redactor-master

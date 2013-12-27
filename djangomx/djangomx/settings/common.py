@@ -121,7 +121,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'sorl.thumbnail',
     'newsletter',
-    'redactor',
 
     'blog',
     'contact',
@@ -166,12 +165,15 @@ LOGGING = {
     }
 }
 
+# Newsletter settings
 NEWSLETTER_CONFIRM_EMAIL = False
 
+# Sourl thumbnail settings
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
 
+# import some secret configurations
 try:
     from secret_settings import *
 except ImportError:

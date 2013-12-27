@@ -2,6 +2,7 @@
 import os
 from django.db import models
 from datetime import datetime
+from django.template.defaultfilters import slugify
 
 
 def get_filename(extension):
@@ -28,3 +29,9 @@ class Job(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = '%s-%s' % (
+            datetime.now().strftime('%Y-%m-%d_%H-%M-%S'), slugify(self.title)
+        )
+        super(Job, self).save(*args, **kwargs)

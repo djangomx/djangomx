@@ -28,9 +28,16 @@
 
     <script src="{{ STATIC_URL }}js/jquery-2.0.3.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+    {% block js %}{% endblock %}
 </head>
 
 <body>
+    <section id="notification">
+        {% block notification %}
+
+        {% endblock %}
+    </section>
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">

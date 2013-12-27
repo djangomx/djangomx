@@ -29,6 +29,9 @@ $(function() {
         return false;
     });
 
+
+    var job_sussess = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Bien hecho!</strong> Se agregado su oferta de trabajo.</div>'
+
     // Add new job form     
     $('#add-job-form').submit(function() {
         var fields = ['title', 'content', 'contact']
@@ -38,13 +41,17 @@ $(function() {
             data: $('#add-job-form').serialize(),
             success: function(data) {
                 if (data.success === true) {
-                    console.log("Job saved");
+                    $('#notification').html(job_sussess);
+                    setTimeout(function(){$('#notification').html("")}, 4000)
+                    $('#job-modal').modal('toggle')
                 } else {
                     $.each(fields, function( index, value ) {
                         $("label[for='" + value + "']").parent().removeClass('label-error');
                     });
                     $.each(data.errors, function( index, value ) {
                         $("label[for='" + value + "']").parent().addClass('label-error');
+                        $('#add-job-form').addClass('animated bounce');
+                        setTimeout(function(){$('#add-job-form').removeClass('animated bounce')}, 1000)
                     });
                 }
             }
