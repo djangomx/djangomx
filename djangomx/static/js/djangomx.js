@@ -32,6 +32,9 @@ $(function() {
 
     var job_sussess = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>Bien hecho!</strong> Se agregado su oferta de trabajo.</div>'
 
+    $('#add-job').click(function(){
+        $('.modal').modal('toggle')
+    });
     // Add new job form     
     $('#add-job-form').submit(function() {
         var fields = ['title', 'content', 'contact']
@@ -43,7 +46,7 @@ $(function() {
                 if (data.success === true) {
                     $('#notification').html(job_sussess);
                     setTimeout(function(){$('#notification').html("")}, 4000)
-                    $('#job-modal').modal('toggle')
+                    $('.modal').modal('toggle')
                 } else {
                     $.each(fields, function( index, value ) {
                         $("label[for='" + value + "']").parent().removeClass('label-error');
