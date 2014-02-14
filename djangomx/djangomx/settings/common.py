@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'contact',
     'courses',
     'jobs',
+    'user_django',
 
     'south',
 )
@@ -164,6 +165,9 @@ LOGGING = {
         },
     }
 }
+
+# Custom model for django
+AUTH_USER_MODEL = 'user_django.User'
 
 # Newsletter settings
 NEWSLETTER_CONFIRM_EMAIL = False
