@@ -8,14 +8,14 @@
 <div class="row">
     <div class="jumbotron">
         <h2 class="welcome-h2">Contacto!</h2>
-        <p class="welcome-p">Necesitas ayuda con algun projecto? o simplemente quieres dejar un saludo.</p>
-    </div> 
+        <p class="welcome-p">¿Necesitas ayuda con algun proyecto, simplemente quieres dejar un saludo?</p>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <form method="POST" action="">
-            {% csrf_token %} 
+            {% csrf_token %}
             <div class="form-group">
                 <label for="name" {% if form.name.errors %}class="label-error"{% endif %}>* {{ form.name.label }}:</label>
                 {{ form.name }}
