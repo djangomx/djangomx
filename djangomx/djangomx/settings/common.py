@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'user_django',
 
     'south',
+    'tinymce',
 )
 
 COMPRESS_ENABLED = True
@@ -176,6 +177,16 @@ NEWSLETTER_CONFIRM_EMAIL = False
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
+
+# TinyMCE configuration
+TINYMCE_JS_URL = os.path.join(STATIC_URL + 'js/tinymce/tinymce.min.js')
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace,image,media",
+    'theme': "modern",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+
 
 # import some secret configurations
 try:

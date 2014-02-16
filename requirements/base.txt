@@ -10,3 +10,4 @@ bpython
 South==0.8.4
 PIL
 redis
+django-tinymce==1.5.2
