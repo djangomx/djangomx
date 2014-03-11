@@ -9,9 +9,7 @@ from django.db import models
 
 
 class UserManager(BaseUserManager):
-    '''
-    Manager for custom user account
-    '''
+    """ Manager for custom user account """
     def create_user(self, username, email, password=None):
         if not username:
             raise ValueError('El usuario debe tener un username')
@@ -38,17 +36,19 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    '''
-    User custom for the site
-    '''
+    """ User custom for the site """
     username = models.CharField(max_length=50, unique=True, db_index=True)
     email = models.CharField(max_length=60, unique=True, db_index=True)
     bio = models.TextField(blank=True)
 
-    created_at = models.DateTimeField(auto_now_add=True,
-                                      verbose_name=u"Fecha de creación")
-    is_active = models.BooleanField(default=True,
-                                    verbose_name='Activo')
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=u"Fecha de creación"
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name='Activo'
+    )
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
@@ -98,6 +98,8 @@ class User(AbstractBaseUser):
         })
 
         return mark_safe(
-            '<a href="{0}" target="_blank" class="with-tooltip" title="Update your gravatar">'
-            '<img src="{0}" alt="gravatar for {1}" class="user-icon" /></a>'.format(gravatar_url, self.username)
+            '<a href="{0}" target="_blank" class="with-tooltip" title="Update \
+            your gravatar">'
+            '<img src="{0}" alt="gravatar for {1}" class="user-icon" /></a>'.
+            format(gravatar_url, self.username)
         )

@@ -2,7 +2,10 @@
 import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
-PROJECT_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', '..')
+PROJECT_ROOT = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)),
+    '..', '..'
+)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -117,7 +120,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'compressor',
-
     'django_extensions',
     'sorl.thumbnail',
     'newsletter',
@@ -179,14 +181,18 @@ THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
 
 # TinyMCE configuration
-TINYMCE_JS_URL = os.path.join(STATIC_URL + 'js/tinymce/tinymce.min.js')
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace,image,media",
-    'theme': "modern",
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "simple",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
 
+# Django Suit Settings
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Django Mexico',
+    'LIST_PER_PAGE': 30,
+}
 
 # import some secret configurations
 try:
