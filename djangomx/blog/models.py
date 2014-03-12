@@ -71,7 +71,7 @@ class Post(models.Model):
     published_at = models.DateTimeField(
         verbose_name=_(u'Fecha de publicación')
     )
-    likes = models.PositiveIntegerField(verbose_name=_(u'Likes'))
+    likes = models.PositiveIntegerField(verbose_name=_(u'Likes'), default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
