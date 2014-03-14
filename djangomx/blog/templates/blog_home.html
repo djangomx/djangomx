@@ -17,6 +17,11 @@
         <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
             <p class="blog-post-meta">{{ post.created_at }} by <a href="#">{{ post.author }}</a></p>
+            <hr>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="img-responsive img-rounded">
+            <hr>
+            {% endif %}
             {{ post.content|safe|escape }}
         </div><!-- /.blog-post -->
         {% empty %}
@@ -35,9 +40,9 @@
         <div class="sidebar-module">
             <h4>En otra parte</h4>
             <ol class="list-unstyled">
-                <li><a href="#">GitHub</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Facebook</a></li>
+                <li><a href="https://twitter.com/django_mx">Twitter</a></li>
+                <li><a href="https://www.facebook.com/django.mexico">Facebook</a></li>
+                <li><a href="https://github.com/dubnio/djangomx">GitHub</a></li>
             </ol>
         </div>
     </div>
