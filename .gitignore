@@ -16,3 +16,4 @@ public/
 CACHE/
 
 secret_settings.py
+djangomx/utilities
