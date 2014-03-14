@@ -16,13 +16,15 @@
         {% for post in posts %}
         <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
-            <p class="blog-post-meta">{{ post.created_at }} by <a href="#">{{ post.author }}</a></p>
+            <p class="blog-post-meta">
+                <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por <a href="#">{{ post.author }}</a>
+            </p>
             <hr>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="img-responsive img-rounded">
-            <hr>
-            {% endif %}
             {{ post.content|safe|escape }}
+            {% if post.image %}
+            <hr>
+            <img src="{{ post.image.url }}" class="img-responsive img-rounded">
+            {% endif %}
         </div><!-- /.blog-post -->
         {% empty %}
             <h2>Aún no hay post de entradas.</h2>
