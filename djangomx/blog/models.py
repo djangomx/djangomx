@@ -1,11 +1,12 @@
 #coding: utf-8
+import os
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.core import urlresolvers
 from django.contrib.contenttypes.models import ContentType
 
 from tinymce.models import HTMLField
-
+from utilities.utils import get_filename
 from user_django.models import User
 
 
@@ -40,6 +41,11 @@ class Category(models.Model):
         return "%s" % (self.title,)
 
 
+def get_img_path(instance, filename):
+    name, ext = os.path.splitext(filename)
+    return 'blog/%s' % get_filename(ext)
+
+
 class Post(models.Model):
     """ Post Model """
     title = models.CharField(
@@ -57,7 +63,7 @@ class Post(models.Model):
         verbose_name=_(u'Imágen'),
         help_text=_(u'Imagen destacada'),
         blank=True,
-        upload_to="blog"
+        upload_to=get_img_path
     )
     content = HTMLField()
     extract = HTMLField(blank=True)

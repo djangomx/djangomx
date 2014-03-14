@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'courses',
     'jobs',
     'user_django',
+    'utilities',
 
     'south',
     'tinymce',
