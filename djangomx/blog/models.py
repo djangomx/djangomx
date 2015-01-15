@@ -85,6 +85,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = _(u'Posts')
         verbose_name_plural = _(u'Posts')
+        ordering = ["-created_at"]
 
     def __unicode__(self):
         return "%s" % (self.title,)
