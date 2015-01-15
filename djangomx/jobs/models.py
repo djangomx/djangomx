@@ -27,6 +27,11 @@ class Job(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'Oferta de trabajo'
+        verbose_name_plural = u"Ofertas de trabajo"
+        ordering = ["-created_at"]
+
     def __unicode__(self):
         return self.title
 
