@@ -13,7 +13,6 @@
 <div class="row">
 
     <div class="col-sm-8 blog-main">
-        {% for post in posts %}
         <div class="blog-post">
             <h2 class="blog-post-title">{{ post.title }}</h2>
             <p class="blog-post-meta">
@@ -26,29 +25,6 @@
             <img src="{{ post.image.url }}" class="img-responsive img-rounded">
             {% endif %}
         </div><!-- /.blog-post -->
-        {% empty %}
-            <h2>Aún no hay post de entradas.</h2>
-        {% endfor %}
-        <!-- <ul class="pager">
-        <li><a href="#">Previous</a></li>
-        <li><a href="#">Next</a></li>
-        </ul> -->
-
-        <div class="pagination">
-
-          <div class="pagination-links">
-            {% if posts.has_previous %}
-              <a href="?page={{ posts.previous_page_number }}">&laquo; Anterior </a>
-            {% endif %}
-            <span class="current">
-                    Página {{ posts.number }} de {{ posts.paginator.num_pages }}
-            </span>
-            {% if posts.has_next %}
-              <a href="?page={{ posts.next_page_number }}">Siguiente &raquo;</a>
-            {% endif %}
-          </div>
-
-        </div>
 
     </div><!-- End blog main -->
 
