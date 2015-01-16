@@ -47,7 +47,7 @@ def view_post(request, slug):
 def category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     posts_list = Post.objects.filter(active=True,
-                                     category=category).order_by('-pub_date')
+                                     category=category).order_by('-published_at')
     categories = Category.objects.filter(active=True)
     paginator = Paginator(posts_list, 5)
 
@@ -71,7 +71,7 @@ def category(request, category_slug):
 
 @render_to('archives.html')
 def archives(request):
-    posts_list = Post.objects.filter(active=True).order_by('-pub_date')
+    posts_list = Post.objects.filter(active=True).order_by('-published_at')
 
     years = {
         '2015': [],
@@ -94,12 +94,12 @@ def archives(request):
 
 
 class LatestEntriesFeed(Feed):
-    title = 'El blog de Gidrek'
-    link = 'http://giovannicortes.com'
-    description = 'Todo lo que sé sobre Python y iOS'
+    title = 'Django México'
+    link = 'http://django.mx'
+    description = 'La comunidad de Django en México'
 
     def items(self):
-        return Post.objects.filter(active=True).order_by('-pub_date')[:10]
+        return Post.objects.filter(active=True).order_by('-published_at')[:10]
 
     def item_title(self, item):
         return item.title
