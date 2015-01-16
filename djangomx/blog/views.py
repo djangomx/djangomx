@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.syndication.views import Feed
@@ -11,8 +11,8 @@ from blog.models import Category, Post
 
 @render_to("blog_home.html")
 def blog_home(request):
-    posts_list = Post.objects.filter(active=True).order_by('-published_at')
-    categories = Category.objects.filter(active=True)
+    posts_list = Post.objects.filter(is_active=True).order_by('-published_at')
+    categories = Category.objects.filter(is_active=True)
     paginator = Paginator(posts_list, 5)
 
     page = request.GET.get('page')
@@ -35,7 +35,7 @@ def blog_home(request):
 @render_to('post.html')
 def view_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    categories = Category.objects.filter(active=True)
+    categories = Category.objects.filter(is_active=True)
 
     return {
         'post': post,
@@ -46,9 +46,9 @@ def view_post(request, slug):
 @render_to('category.html')
 def category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
-    posts_list = Post.objects.filter(active=True,
-                                     category=category).order_by('-published_at')
-    categories = Category.objects.filter(active=True)
+    posts_list = Post.objects.filter(is_active=True,
+        category=category).order_by('-published_at')
+    categories = Category.objects.filter(is_active=True)
     paginator = Paginator(posts_list, 5)
 
     page = request.GET.get('page')
@@ -71,7 +71,7 @@ def category(request, category_slug):
 
 @render_to('archives.html')
 def archives(request):
-    posts_list = Post.objects.filter(active=True).order_by('-published_at')
+    posts_list = Post.objects.filter(is_active=True).order_by('-published_at')
 
     years = {
         '2015': [],
@@ -99,7 +99,7 @@ class LatestEntriesFeed(Feed):
     description = 'La comunidad de Django en México'
 
     def items(self):
-        return Post.objects.filter(active=True).order_by('-published_at')[:10]
+        return Post.objects.filter(is_active=True).order_by('-published_at')[:10]
 
     def item_title(self, item):
         return item.title
