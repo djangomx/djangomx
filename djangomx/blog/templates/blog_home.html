@@ -20,11 +20,11 @@
                 <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por <a href="#">{{ post.author }}</a>
             </p>
             <hr>
-            {{ post.content|safe|escape }}
             {% if post.image %}
-            <hr>
             <img src="{{ post.image.url }}" class="img-responsive img-rounded">
+            <hr>
             {% endif %}
+            {{ post.content|safe|escape }}
         </div><!-- /.blog-post -->
         {% empty %}
             <h2>Aún no hay post de entradas.</h2>
