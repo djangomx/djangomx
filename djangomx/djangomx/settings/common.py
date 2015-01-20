@@ -191,6 +191,7 @@ TINYMCE_DEFAULT_CONFIG = {
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Django Mexico',
     'LIST_PER_PAGE': 30,
+    'CONFIRM_UNSAVED_CHANGES': False,
 }
 
 # import some secret configurations
