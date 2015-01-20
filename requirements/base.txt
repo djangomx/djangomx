@@ -12,3 +12,4 @@ PIL
 redis
 django-tinymce==1.5.2
 pytz==2014.4
+django-suit-redactor==0.0.2

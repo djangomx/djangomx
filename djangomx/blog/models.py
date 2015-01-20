@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 import os
 from django.db import models
 from django.utils.translation import ugettext as _
