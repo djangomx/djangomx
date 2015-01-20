@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'compressor',
     'django_extensions',
     'sorl.thumbnail',
-    'newsletter',
+    #'newsletter',
 
     'blog',
     'contact',
