@@ -6,8 +6,8 @@
 
 {% block content %}
 <div class="blog-header">
-    <h1 class="blog-title">El blog de django.mx</h1>
-    <p class="lead blog-description">Este es el blog oficial de django.mx.</p>
+    <h2 class="blog-title">El blog de django.mx</h2>
+    <hr>
 </div>
 
 <div class="row">
@@ -15,7 +15,7 @@
     <div class="col-sm-8 blog-main">
         {% for post in posts %}
         <div class="blog-post">
-            <h2 class="blog-post-title">{{ post.title }}</h2>
+            <h2 class="blog-post-title"><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></h2>
             <p class="blog-post-meta">
                 <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por <a href="#">{{ post.author }}</a>
             </p>
