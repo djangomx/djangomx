@@ -4,6 +4,11 @@
 {% block title%}Django México - Contacto{% endblock %}
 {% block activecontact %}class="active"{% endblock %}
 
+{% block js %}
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+{% endblock %}
+
+
 {% block content %}
 <div class="row">
     <div class="jumbotron">
@@ -37,6 +42,16 @@
             </div>
         </form>
     </div>
-    <div class="col-md-6"></div>
+    <div id="map-wrapper" class="col-md-6">
+        <div id='map'></div>
+    </div>
 </div>
-    {% endblock %}
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoibmV0b3hpY28iLCJhIjoiMFNNb3ZUSSJ9.amr6QxoQzYu_GBuouJ56Kw';
+var map = L.mapbox.map('map', 'netoxico.dd2708d6')
+    .setView([19.3988971,-99.0964179], 6);
+</script>
+
+{% endblock %}
+
