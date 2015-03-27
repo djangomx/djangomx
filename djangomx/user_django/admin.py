@@ -18,7 +18,7 @@ class UserAdmin(UserAdmin):
     list_filter = ('username', 'email',)
     fieldsets = (
         ('Usuario', {'fields': ('username', 'email', 'password', 'bio')}),
-        ('Permissions', {'fields': ('is_admin',)}),
+        ('Permissions', {'fields': ('is_admin', 'groups')}),
         ('Logs', {'fields': ('last_login',)}),
     )
     add_fieldsets = (
