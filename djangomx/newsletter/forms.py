@@ -42,8 +42,8 @@ class SubscribeRequestForm(NewsletterForm):
     subscription.
     """
 
-    def clean_email_field(self):
-        data = self.cleaned_data['email_field']
+    def clean_email(self):
+        data = self.cleaned_data['email']
 
         if not data:
             raise ValidationError(_("An e-mail address is required."))
@@ -64,7 +64,7 @@ class SubscribeRequestForm(NewsletterForm):
         # Check whether we have already been subscribed to
         try:
             subscription = NewsletterSubscription.objects.get(
-                email_field__exact=data,
+                email__exact=data,
                 newsletter=self.instance.newsletter
             )
 

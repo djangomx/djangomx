@@ -18,14 +18,14 @@ class NewsletterNewsletter(models.Model):
 class NewsletterSubscription(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
     name = models.CharField(max_length=30, blank=True, null=True)
-    email = models.CharField(max_length=75, blank=True, null=True)
+    email = models.EmailField(max_length=75, blank=True, null=True)
     ip = models.CharField(max_length=15, blank=True, null=True)
     newsletter = models.ForeignKey(NewsletterNewsletter)
-    create_date = models.DateTimeField()
+    create_date = models.DateTimeField(auto_now_add=True)
     activation_code = models.CharField(max_length=40)
     subscribed = models.IntegerField()
     subscribe_date = models.DateTimeField(blank=True, null=True)
-    unsubscribed = models.IntegerField()
+    unsubscribed = models.IntegerField(default=False)
     unsubscribe_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
