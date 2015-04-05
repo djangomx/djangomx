@@ -3,7 +3,6 @@
 *.pyo
 *.swp
 
-local_settings.py
 *.db
 
 virtualenv
@@ -15,4 +14,4 @@ media/
 public/
 CACHE/
 
-secret_settings.py
+secrets.json

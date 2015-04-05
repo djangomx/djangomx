@@ -20,8 +20,6 @@ urlpatterns = patterns(
     url(r'^cursos/', include('courses.urls')),
     url(r'^ofertas/', include('jobs.urls')),
 
-    url(r'^newsletter/', include('newsletter.urls')),
-
     url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     url(r'^500/$', TemplateView.as_view(template_name='500.html')),
     url(

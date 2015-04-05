@@ -9,6 +9,18 @@ from suit_redactor.widgets import RedactorWidget
 class PageForm(ModelForm):
     class Meta:
         model = Post
+        fields = (
+            'title',
+            'slug',
+            'image',
+            'content',
+            'extract',
+            'category',
+            'author',
+            'published_at',
+            'likes',
+            'is_active'
+        )
         widgets = {
             'extract': RedactorWidget(editor_options={'lang': 'es'}),
             'content': RedactorWidget(editor_options={'lang': 'es'})

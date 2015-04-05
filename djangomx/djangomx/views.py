@@ -1,13 +1,13 @@
-#coding: utf-8
+# coding: utf-8
 from annoying.decorators import render_to, ajax_request
 from newsletter.forms import SubscribeRequestForm
-from newsletter.models import Newsletter
+from newsletter.models import NewsletterNewsletter
 
 
 @ajax_request
 def subscribe_request(request):
     """ Adds a new subscription """
-    newsletter = Newsletter.objects.get(id=1)
+    newsletter = NewsletterNewsletter.objects.get(id=1)
     if request.POST:
         form = SubscribeRequestForm(
             newsletter=newsletter, data=request.POST
