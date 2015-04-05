@@ -161,6 +161,8 @@ LOGGING = {
     }
 }
 
+DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
+
 # Custom model for django
 AUTH_USER_MODEL = 'user_django.User'
 
