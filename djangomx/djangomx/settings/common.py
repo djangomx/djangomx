@@ -7,8 +7,13 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
 SECRETS_PATH = BASE_DIR.parent.child('conf').child('secrets.json')
-with open(SECRETS_PATH) as handle:
-    SECRETS = json.load(handle)
+try:
+    with open(SECRETS_PATH) as handle:
+        SECRETS = json.load(handle)
+except IOError:
+    SECRETS = {
+        'secret_key': 'a',
+    }
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
