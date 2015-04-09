@@ -33,6 +33,9 @@
                         {% thumbnail object.image "100x100" crop="center" as im %}
                         <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
+                        {% if object.contact %}
+                            <br><b>Contacto:</b> <a href="mailto:{{ object.contact }}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
