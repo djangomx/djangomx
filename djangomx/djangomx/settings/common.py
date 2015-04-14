@@ -2,7 +2,6 @@
 import os
 import json
 from unipath import FSPath as Path
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
@@ -50,10 +49,6 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
-)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -103,8 +98,6 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
-    'suit',
-    'suit_redactor',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -182,11 +175,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': "simple",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
-}
-
-# Django Suit Settings
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Django Mexico',
-    'LIST_PER_PAGE': 30,
-    'CONFIRM_UNSAVED_CHANGES': False,
 }
