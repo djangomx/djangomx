@@ -1,24 +1,38 @@
 # coding: utf-8
+from django.conf import settings
+
 from annoying.decorators import render_to, ajax_request
-from newsletter.forms import SubscribeRequestForm
-from newsletter.models import NewsletterNewsletter
+from forms import NewsletterForm
+
+import mailchimp
 
 
 @ajax_request
 def subscribe_request(request):
-    """ Adds a new subscription """
-    newsletter = NewsletterNewsletter.objects.get(id=1)
+    """ Adds a new subscription to mailchimp list. """
     if request.POST:
-        form = SubscribeRequestForm(
-            newsletter=newsletter, data=request.POST
+        mail_chimp = mailchimp.Mailchimp(
+            settings.SECRETS['mailchimp_api_key']
         )
+        form = NewsletterForm(request.POST)
         if form.is_valid():
-            subscription = form.save(commit=False)
-            subscription.subscribed = True
-            subscription.save()
+            try:
+                mail_chimp.lists.subscribe(
+                    settings.SECRETS['mailchimp_list_id'],
+                    {'email': form.cleaned_data['email']},
+                    double_optin=False,
+                    send_welcome=True
+                )
+            except mailchimp.ListAlreadySubscribedError:
+                return {
+                    'success': False, 'error': 'Email is already subscribed'
+                }
             return {'success': True}
         else:
-            return {'success': False}
+            return {
+                'success': False,
+                'error': form.errors.get('email')
+            }
     return {'success': False, 'error': 'Request not valid'}
 
 
