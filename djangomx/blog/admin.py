@@ -22,8 +22,12 @@ class PageForm(ModelForm):
             'is_active'
         )
         widgets = {
-            'extract': RedactorWidget(editor_options={'lang': 'es'}),
-            'content': RedactorWidget(editor_options={'lang': 'es'})
+            'content': RedactorWidget(
+                editor_options={'lang': 'es', 'minHeight': 400}
+            ),
+            'extract': RedactorWidget(
+                editor_options={'lang': 'es', 'minHeight': 200}
+            )
         }
 
 

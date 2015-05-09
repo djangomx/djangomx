@@ -98,6 +98,8 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
+    'suit',
+    'suit_redactor',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -165,10 +167,9 @@ THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
 
-# TinyMCE configuration
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "simple",
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
-}
+# Django SUIT configuration
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
+    'django.core.context_processors.request',
+)
