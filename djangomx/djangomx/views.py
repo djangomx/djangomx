@@ -3,6 +3,7 @@ from django.conf import settings
 
 from annoying.decorators import render_to, ajax_request
 from forms import NewsletterForm
+from newsletter.models import Subscription
 
 import mailchimp
 
@@ -16,10 +17,13 @@ def subscribe_request(request):
         )
         form = NewsletterForm(request.POST)
         if form.is_valid():
+            email = form.cleaned_data['email']
+            subscription = Subscription(email=email)
+            subscription.save()
             try:
                 mail_chimp.lists.subscribe(
                     settings.SECRETS['mailchimp_list_id'],
-                    {'email': form.cleaned_data['email']},
+                    {'email': email},
                     double_optin=False,
                     send_welcome=True
                 )

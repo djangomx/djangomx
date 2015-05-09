@@ -1,33 +1,17 @@
+# coding: utf-8
 from django.db import models
-from django.conf import settings
 
 
-class NewsletterNewsletter(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.CharField(unique=True, max_length=50)
-    email = models.CharField(max_length=75)
-    sender = models.CharField(max_length=200)
-    visible = models.IntegerField()
-    send_html = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'newsletter_newsletter'
-
-
-class NewsletterSubscription(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+class Subscription(models.Model):
     name = models.CharField(max_length=30, blank=True, null=True)
-    email = models.EmailField(max_length=75, blank=True, null=True)
+    email = models.EmailField(max_length=100, unique=True)
     ip = models.CharField(max_length=15, blank=True, null=True)
-    newsletter = models.ForeignKey(NewsletterNewsletter)
     create_date = models.DateTimeField(auto_now_add=True)
-    activation_code = models.CharField(max_length=40)
-    subscribed = models.IntegerField()
+    activation_code = models.CharField(max_length=40, blank=True, null=True)
+    subscribed = models.BooleanField(default=True)
     subscribe_date = models.DateTimeField(blank=True, null=True)
-    unsubscribed = models.IntegerField(default=False)
+    unsubscribed = models.BooleanField(default=False)
     unsubscribe_date = models.DateTimeField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'newsletter_subscription'
+    def __unicode__(self):
+        return u'{}'.format(self.email)

@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from tinymce.models import HTMLField
 from utilities.utils import get_filename
-from user_django.models import User
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):

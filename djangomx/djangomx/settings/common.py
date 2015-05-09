@@ -89,7 +89,7 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': SECRETS.get('db_name', ''),
         'USER': SECRETS.get('db_user', ''),
         'PASSWORD': SECRETS.get('db_password', ''),
@@ -113,7 +113,6 @@ INSTALLED_APPS = (
     'contact',
     'courses',
     'jobs',
-    'user_django',
     'utilities',
     'newsletter',
 
@@ -160,9 +159,6 @@ LOGGING = {
 }
 
 DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
-
-# Custom model for django
-AUTH_USER_MODEL = 'user_django.User'
 
 # Sourl thumbnail settings
 THUMBNAIL_DEBUG = True
