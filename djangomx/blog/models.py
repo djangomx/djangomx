@@ -5,7 +5,6 @@ from django.utils.translation import ugettext as _
 from django.core import urlresolvers
 from django.contrib.contenttypes.models import ContentType
 
-from tinymce.models import HTMLField
 from utilities.utils import get_filename
 from django.contrib.auth.models import User
 
@@ -65,8 +64,12 @@ class Post(models.Model):
         blank=True,
         upload_to=get_img_path
     )
-    content = HTMLField()
-    extract = HTMLField(blank=True)
+    content = models.TextField(help_text=_(u'Este es el contenido de el Post'),)
+    extract = models.TextField(
+        blank=True,
+        help_text=_(u'Este es solo un resumen de el Post que se muestra en la \
+        lista de posts'),
+    )
     category = models.ForeignKey(
         Category,
         verbose_name=_(u'Categoría'),
