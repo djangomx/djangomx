@@ -24,7 +24,8 @@
             <img src="{{ post.image.url }}" class="img-responsive img-rounded">
             <hr>
             {% endif %}
-            {{ post.content|safe|escape }}
+            {{ post.extract|safe|escape }}
+            <a class="btn btn-default btn-xs" href="{% url 'view_post' slug=post.slug %}">Continua leyendo »</a>
         </div><!-- /.blog-post -->
         {% empty %}
             <h2>Aún no hay post de entradas.</h2>
