@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load compress thumbnail %}
+
+{% block title%}Django MX{% endblock %}
+
+{% block content %}
+<div class="profile">
+  {% thumbnail user.profile.cover "850x280" crop="center" as im %}
+    <img align="left" class="profile-image-lg" src="{{ im.url }}" alt="{{ user.username }}">
+  {% endthumbnail %}
+
+  {% thumbnail user.profile.avatar "180x180" crop="center" as im %}
+    <img align="left" class="profile-image-profile thumbnail" src="{{ im.url }}" alt="Profile image example"/>
+  {% endthumbnail %}
+
+  <div class="profile-text">
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <p>{{ user.profile.bio }}</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul>
+      {% if user.profile.website %}
+        <li>
+          <span class="glyphicon glyphicon-globe"></span>
+          <a href="{{ user.profile.website }}"> {{ user.profile.website }}</a>
+        </li>
+      {% endif %}
+      {% if user.profile.github %}
+        <li>Github: <a href="{{ user.profile.github }}">{{ user.profile.github }}</a></li>
+      {% endif %}
+      {% if user.profile.twitter %}
+        <li>Twitter: <a href="{{ user.profile.twitter }}">{{ user.profile.twitter }}</a></li>
+      {% endif %}
+      {% if user.profile.facebook %}
+        <li>Facebook: <a href="{{ user.profile.facebook }}">{{ user.profile.facebook }}</a></li>
+      {% endif %}
+      {% if user.linkedin.twitter %}
+        <li>Linkedin: <a href="{{ user.profile.twitter }}">{{ user.profile.linkedin }}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

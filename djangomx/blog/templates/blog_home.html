@@ -17,7 +17,8 @@
         <div class="blog-post">
             <h2 class="blog-post-title"><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></h2>
             <p class="blog-post-meta">
-                <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por <a href="#">{{ post.author }}</a>
+                <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por
+                <a href="{% url 'profile' username=post.author.username%}">{{ post.author.username }}</a>
             </p>
             <hr>
             {% if post.image %}

@@ -117,8 +117,7 @@ INSTALLED_APPS = (
     'jobs',
     'utilities',
     'newsletter',
-
-    'tinymce',
+    'accounts'
 )
 
 COMPRESS_ENABLED = True

@@ -10,6 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', 'djangomx.views.home', name='home'),
+    url(r'^@', include('accounts.urls')),
+
     url(r'^subscribe', 'djangomx.views.subscribe_request', name='subscribe'),
 
     url(r'^admin/', include(admin.site.urls)),
