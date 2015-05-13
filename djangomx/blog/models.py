@@ -117,5 +117,8 @@ class Post(models.Model):
 
     @property
     def img_full_url(self):
-        current_site = Site.objects.get_current()
-        return '{}{}'.format(current_site.domain, self.image.url)
+        if self.image:
+            current_site = Site.objects.get_current()
+            return '{}{}'.format(current_site.domain, self.image.url)
+        else:
+            return ''
