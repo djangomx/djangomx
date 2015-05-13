@@ -11,6 +11,7 @@ class PageForm(ModelForm):
         model = Post
         fields = (
             'title',
+            'description',
             'slug',
             'image',
             'content',
