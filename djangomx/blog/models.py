@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from django.core import urlresolvers
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 
 from utilities.utils import get_filename
 from django.contrib.auth.models import User
@@ -51,6 +52,9 @@ class Post(models.Model):
         verbose_name=_(u'Título'),
         help_text=_(u' '),
         max_length=255
+    )
+    description = models.TextField(
+        blank=True, null=True, help_text=u'Descripción usada para SEO'
     )
     slug = models.SlugField(
         verbose_name=_(u'Slug'),
@@ -101,3 +105,17 @@ class Post(models.Model):
             ),
             args=(self.id,)
         )
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('blog.views.view_post', args=[str(self.slug)])
+
+    @property
+    def full_url(self):
+        current_site = Site.objects.get_current()
+        return '{}{}'.format(current_site.domain, self.get_absolute_url())
+
+    @property
+    def img_full_url(self):
+        current_site = Site.objects.get_current()
+        return '{}{}'.format(current_site.domain, self.image.url)

@@ -39,7 +39,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     form = PageForm
     prepopulated_fields = {'slug': ('title', )}
-    list_display = ('title', 'slug', 'created_at', 'is_active')
+    list_display = ('title', 'slug', 'description', 'created_at', 'is_active')
 
 
 admin.site.register(Category, CategoryAdmin)

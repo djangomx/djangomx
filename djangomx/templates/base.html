@@ -3,20 +3,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title%}Django México{% endblock %}</title>
+    <title>{% block title %}Django México{% endblock %}</title>
     <!-- Apple Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="keywords" content="django, México, mexico, framework, desarrolladores, python, development, freelance, ofertas, trabajo, codigo, open source, cursos, tutoriales">
-    <meta name="description" content="Django Mexico es la comunidad de desarrolladores Django el framework que hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código">
+
+    <meta name="title" content="{% block title-content %}Django México{% endblock %}">
+    <meta name="keywords" content="{% block keywords-content %}django, México, mexico, framework, desarrolladores, python, development, freelance, ofertas, trabajo, codigo, open source, cursos, tutoriales{% endblock %}">
+    <meta name="description" content="{% block description-content %}Django Mexico es la comunidad de desarrolladores Django el framework que hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código{% endblock %}">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:url" content="https://django.mx/">
+    <meta property="og:url" content="{% block og-url %}https://django.mx/{% endblock %}">
     <meta property="og:site_name" content="Django MX">
-    <meta property="og:title" content="El WEB framework para perfeccionistas con fechas límite.">
-    <meta property="og:image" content="https://django.mx{{ STATIC_URL }}img/og_image.png" data-google-stars-image-width="1200" data-google-stars-image-height="630">
-    <meta property="og:description" content="Django Mexico es la comunidad de desarrolladores Django el framework que hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código">
+    <meta property="og:title" content="{% block og-title %}El WEB framework para perfeccionistas con fechas límite.{% endblock %}">
+    <meta property="og:image" content="{% block og-image %}https://django.mx{{ STATIC_URL }}img/og_image.png{% endblock %}">
+    <meta property="og:description" content="{% block og-description %}Django Mexico es la comunidad de desarrolladores Django el framework que hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código{% endblock %}">
+
+    <meta name="twitter:site" content="@django_mx">
+    <meta name="twitter:image:src" content="{% block twitter-image %}https://django.mx{{ STATIC_URL }}img/og_image.png{% endblock %}">
+
+    {% block extra-meta %}{% endblock %}
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic" rel="stylesheet" type="text/css">
     {% compress css %}
