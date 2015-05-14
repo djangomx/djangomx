@@ -17,7 +17,6 @@ class PageForm(ModelForm):
             'content',
             'extract',
             'category',
-            'author',
             'published_at',
             'likes',
             'is_active'
@@ -40,7 +39,27 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     form = PageForm
     prepopulated_fields = {'slug': ('title', )}
-    list_display = ('title', 'slug', 'description', 'created_at', 'is_active')
+    exclude = ('author',)
+    list_display = (
+        'title',
+        'slug',
+        'description',
+        'created_at',
+        'is_active',
+        'author'
+    )
+
+    def save_form(self, request, form, change):
+        obj = super(PostAdmin, self).save_form(request, form, change)
+        if not change:
+            obj.author = request.user
+        return obj
+
+    def get_queryset(self, request):
+        qs = super(PostAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(author=request.user)
 
 
 admin.site.register(Category, CategoryAdmin)

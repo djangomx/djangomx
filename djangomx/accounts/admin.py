@@ -15,6 +15,22 @@ class ProfileInline(admin.StackedInline):
 class UserAdmin(UserAdmin):
     inlines = (ProfileInline, )
 
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', )
+
+    def save_form(self, request, form, change):
+        obj = super(ProfileAdmin, self).save_form(request, form, change)
+        if not change:
+            obj.user = request.user
+        return obj
+
+    def get_queryset(self, request):
+        qs = super(ProfileAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-admin.site.register(Profile)
+admin.site.register(Profile, ProfileAdmin)
