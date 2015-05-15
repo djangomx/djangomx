@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.forms import ModelForm
 from blog.models import Category, Post
+from django.core.exceptions import PermissionDenied
 
 from suit_redactor.widgets import RedactorWidget
 
@@ -18,6 +19,7 @@ class PageForm(ModelForm):
             'extract',
             'category',
             'published_at',
+            'author',
             'likes',
             'is_active'
         )
@@ -39,7 +41,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     form = PageForm
     prepopulated_fields = {'slug': ('title', )}
-    exclude = ('author',)
     list_display = (
         'title',
         'slug',
@@ -49,9 +50,17 @@ class PostAdmin(admin.ModelAdmin):
         'author'
     )
 
+    def has_obj_change_permission(self, obj, request):
+        if obj.author == request.user or request.user.is_superuser:
+            return True
+        else:
+            return False
+
     def save_form(self, request, form, change):
         obj = super(PostAdmin, self).save_form(request, form, change)
         if not change:
+            obj.author = request.user
+        if self.has_obj_change_permission(obj, request):
             obj.author = request.user
         return obj
 
@@ -60,6 +69,23 @@ class PostAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(author=request.user)
+
+    def render_change_form(self, request, context, *args, **kwargs):
+        if not request.user.is_superuser:
+            self.exclude = ('author',)
+        else:
+            self.exclude = None
+        obj = context.get('original')
+        if not obj:
+            return super(PostAdmin, self).render_change_form(
+                request, context, args, kwargs
+            )
+        if obj and self.has_obj_change_permission(obj, request):
+            return super(PostAdmin, self).render_change_form(
+                request, context, args, kwargs
+            )
+        else:
+            raise PermissionDenied()
 
 
 admin.site.register(Category, CategoryAdmin)

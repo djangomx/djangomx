@@ -19,6 +19,12 @@ class UserAdmin(UserAdmin):
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', )
 
+    def has_obj_change_permission(self, obj, request):
+        if obj.author == request.user or request.user.is_superuser:
+            return True
+        else:
+            return False
+
     def save_form(self, request, form, change):
         obj = super(ProfileAdmin, self).save_form(request, form, change)
         if not change:
