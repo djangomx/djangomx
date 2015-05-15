@@ -4,13 +4,13 @@
 *.swp
 
 *.db
-
+*sqlite3
 virtualenv
 .codeintel
 .coverage
 *.sublime-project
 *.sublime-workspace
-
+local_settings.py
 media/
 public/
 CACHE/
