@@ -13,7 +13,7 @@ from blog.models import Category, Post
 def blog_home(request):
     posts_list = Post.objects.filter(is_active=True).order_by('-published_at')
     categories = Category.objects.filter(is_active=True)
-    paginator = Paginator(posts_list, 5)
+    paginator = Paginator(posts_list, 4)
 
     page = request.GET.get('page')
     try:

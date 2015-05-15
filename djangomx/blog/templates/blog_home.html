@@ -5,6 +5,7 @@
 {% block activeblog %}class="active"{% endblock %}
 
 {% block content %}
+
 <div class="blog-header">
     <h2 class="blog-title">El blog de django.mx</h2>
     <hr>
@@ -12,62 +13,76 @@
 
 <div class="row">
 
-    <div class="col-sm-8 blog-main">
-        {% for post in posts %}
+  <div class="col-sm-8 blog-main">
+
+    <div class="row">
+
+      {% for post in posts %}
+      <div class="col-sm-6">
+
         <div class="blog-post">
-            <h2 class="blog-post-title"><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></h2>
-            <p class="blog-post-meta">
-                <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por
-                <a href="{% url 'profile' username=post.author.username%}">{{ post.author.username }}</a>
-            </p>
-            <hr>
-            {% if post.image %}
-            <img src="{{ post.image.url }}" class="img-responsive img-rounded">
-            <hr>
-            {% endif %}
-            {{ post.extract|safe|escape }}
-            <a class="btn btn-default btn-xs" href="{% url 'view_post' slug=post.slug %}">Continua leyendo »</a>
-        </div><!-- /.blog-post -->
-        {% empty %}
-            <h2>Aún no hay post de entradas.</h2>
-        {% endfor %}
-        <!-- <ul class="pager">
-        <li><a href="#">Previous</a></li>
-        <li><a href="#">Next</a></li>
-        </ul> -->
+          <h2 class="blog-post-title"><a href="{% url 'view_post' post.slug %}">{{ post.title }}</a></h2>
+          <p class="blog-post-meta">
+            <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por
+            <a href="{% url 'profile' username=post.author.username%}">{{ post.author.username }}</a>
+          </p>
+          <hr>
+          {% if post.image %}
+          <img src="{{ post.image.url }}" class="img-responsive img-rounded">
+          <hr>
+          {% endif %}
+          {{ post.description|truncatechars:250 }}
+          <br>
+          <a class="btn btn-default btn-xs" href="{% url 'view_post' slug=post.slug %}">Continua leyendo »</a>
+        </div><!-- End of post -->
+      </div>
+      {% empty %}<h2>Aún no hay post de entradas.</h2>
+      {% endfor %}
 
-        <div class="pagination">
+    </div> <!-- End posts -->
 
-          <div class="pagination-links">
-            {% if posts.has_previous %}
-              <a href="?page={{ posts.previous_page_number }}">&laquo; Anterior </a>
-            {% endif %}
-            <span class="current">
-                    Página {{ posts.number }} de {{ posts.paginator.num_pages }}
-            </span>
-            {% if posts.has_next %}
-              <a href="?page={{ posts.next_page_number }}">Siguiente &raquo;</a>
-            {% endif %}
-          </div>
+    <div class="row">
+      <nav>
+        <ul class="pagination">
+          {% if posts.has_previous %}
+          <li>
+            <a href="?page={{ posts.previous_page_number }}" aria-label="Anterior">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
 
-        </div>
+          <li><a href="#">{{ posts.number }}</a></li>
 
-    </div><!-- End blog main -->
+          {% if posts.has_next %}
+          <li>
+            <a href="?page={{ posts.next_page_number }}" aria-label="Siguiente">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div><!-- End paginator -->
 
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-        <div class="sidebar-module sidebar-module-inset">
-            <p>En este blog trataremos de escribir tips y otras cosas útiles de django o python.</p>
-        </div>
-        <div class="sidebar-module">
-            <h4>En otra parte</h4>
-            <ol class="list-unstyled">
-                <li><a href="https://twitter.com/django_mx" target="_blank">Twitter</a></li>
-                <li><a href="https://www.facebook.com/django.mexico" target="_blank">Facebook</a></li>
-                <li><a href="https://github.com/dubnio/djangomx" target="_blank">GitHub</a></li>
-            </ol>
-        </div>
+  </div><!-- End blog main -->
+
+  <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+    <div class="sidebar-module sidebar-module-inset">
+      <p>En este blog trataremos de escribir tips y otras cosas útiles de django o python.</p>
     </div>
 
-</div>
+    <div class="sidebar-module">
+      <h4>En otra parte</h4>
+      <ol class="list-unstyled">
+        <li><a href="https://twitter.com/django_mx" target="_blank">Twitter</a></li>
+        <li><a href="https://www.facebook.com/django.mexico" target="_blank">Facebook</a></li>
+        <li><a href="https://github.com/dubnio/djangomx" target="_blank">GitHub</a></li>
+      </ol>
+    </div>
+  </div><!-- End sidebar -->
+
+</div><!-- End Row -->
 
 {% endblock %}
