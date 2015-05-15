@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 from .models import Profile
-
+from django.utils.timezone import now
 
 class ProfileInline(admin.StackedInline):
     model = Profile
@@ -17,7 +17,16 @@ class UserAdmin(UserAdmin):
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', )
+    list_display = ('user', "blogpost_pending")
+
+    def blogpost_pending(self, obj):
+        created_at = obj.user.date_joined
+        now_week = int(now().strftime("%U"))
+        created_at_week = int(created_at.strftime("%U"))
+        total_post = now_week - created_at_week
+        posts = obj.user.post_set.count()
+        return "%s/%s" % (total_post, posts)
+
 
     def has_obj_change_permission(self, obj, request):
         if obj.author == request.user or request.user.is_superuser:
