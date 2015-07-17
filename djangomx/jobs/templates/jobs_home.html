@@ -1,8 +1,98 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load thumbnail %}
 
-{% block title%}Django México - Blog{% endblock %}
+{% block title%}Django México - Trabajos{% endblock %}
+{% block activejobs %}class="active"{% endblock %}
 
 {% block content %}
-<h1>Jobs</h1>
+<div class="row">
+    <div class="jumbotron">
+        <h2 class="welcome-h2">¡Encuentra algún desarrollador Django!</h2>
+        <p class="welcome-p">Postea tu oferta de trabajo rápido y ponte en contacto con un desarrollador django en México.</p>
+    </div> 
+</div>
+
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+
+        <div class="panel-group" id="accordion">
+            {% for object in jobs %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ object.id }}">
+                            {{ object.title }}
+                        </a>
+                        <span class="job-date pull-right">{{ object.created_at | date:"D d M Y" }}</span>
+                    </h4>
+                </div>
+                <div id="collapse-{{ object.id }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        {{ object.content | safe}}
+                        {% thumbnail object.image "100x100" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        {% if object.contact %}
+                            <br><b>Contacto:</b> <a href="mailto:{{ object.contact }}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <h4>Aún no existen ofertas de trabajo.</h4>
+            {% endfor %}
+        </div>
+
+    </div><!--/span-->
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
+            <button id="add-job" class="btn btn-default btn-lg">
+                Agrega una oferta de trabajo
+            </button>
+            <!-- Button trigger modal -->
+        </div>
+        <hr>
+        Te recomendamos también anunciar tu oferta en <a href="http://djangojobs.net/jobs/post/P/DJNGMX28/">http://djangojobs.net</a> y te regalamos un cupón de descuento.
+        <hr>
+        <a href="http://djangojobs.net/jobs/post/P/DJNGMX28/">
+            <img src="{{ STATIC_URL }}img/djangojobs.png" class="img-responsive">
+        </a>
+    </div><!--/span-->
+
+    <!-- Modal -->
+    <div class="modal">
+        <div class="modal-dialog">
+            <form id="add-job-form" method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Agrega una nueva oferta de trabajo.</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title">* Titulo:</label>
+                            <input type="text" class="form-control" id="id_title" placeholder="Jr. Developer" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">* Correo de contacto:</label>
+                            <input type="email" class="form-control" id="id_contact" placeholder="a@b.com" name="contact">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">* Contenido:</label>
+                            {{ form.content }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-default">Guardar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </form>
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
 {% endblock %}

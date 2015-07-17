@@ -3,6 +3,13 @@
 
 {% block title%}Error 404{% endblock %}
 
-{% block container %}
-    <h1>Error 404</h1>
+{% block content %}
+    <div class="jumbotron">
+      <h2>La página que estás buscando no existe.</h2>
+      <p>Es posible que desee volver a la página de inicio. Si usted piensa que algo esta roto, informe de el problema.</p>
+      <p>
+        <a class="btn btn-default btn-lg" href="https://django.mx" role="button">Ir a la página principal</a>
+        <a class="btn btn-default btn-lg" href="mailto:me@netoxico.com" role="button">Reportar Un Problema</a>
+      </p>
+    </div>
 {% endblock %}

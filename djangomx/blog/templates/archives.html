@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load compress %}
+
+{% block title%}Django México - Blog{% endblock %}
+{% block activeblog %}class="active"{% endblock %}
+
+{% block content %}
+<div class="blog-header">
+    <h1 class="blog-title">El blog de django.mx</h1>
+    <p class="lead blog-description">Este es el blog oficial de django.mx.</p>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-8 blog-main">
+
+    {% for year, post_list in archives.items %}
+
+        <h2>{{ year }}</h2>
+
+        {% for post in post_list %}
+
+        <article>
+
+          <a href="{% url 'view_post' post.slug %}" class="post-title-archive">{{ post.title }}</a> | Publicado el {{ post.pub_date }}
+
+        </header>
+        </article>
+
+        {% endfor %}
+
+  {% endfor %}
+
+    </div><!-- End blog main -->
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+            <p>En este blog trataremos de escribir tips y otras cosas útiles de django o python.</p>
+        </div>
+        <div class="sidebar-module">
+            <h4>En otra parte</h4>
+            <ol class="list-unstyled">
+                <li><a href="https://twitter.com/django_mx" target="_blank">Twitter</a></li>
+                <li><a href="https://www.facebook.com/django.mexico" target="_blank">Facebook</a></li>
+                <li><a href="https://github.com/dubnio/djangomx" target="_blank">GitHub</a></li>
+            </ol>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

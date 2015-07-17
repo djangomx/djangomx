@@ -2,81 +2,80 @@
 {% load compress %}
 
 {% block title%}Django México{% endblock %}
+{% block activehome %}class="active"{% endblock %}
 
 {% block content %}
 <div class="jumbotron">
-    <h2>El WEB framework para perfeccionistas con fechas límite.</h2>
-    <p class="lead">Django hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código</p>
+    <h2 class="welcome-h2">El WEB framework para perfeccionistas con fechas límite.</h2>
+    <p class="welcome-p" class="lead">Django hace que sea más fácil de construir mejores aplicaciones web más rápido y con menos código</p>
 </div>
 
-
-<div class="row featurette">
-    <div class="col-md-7">
-        <h2 class="featurette-heading">MAPEO OBJECTO RELACION</h2>
-        <p class="lead">Defina sus modelos de datos en su totalidad en Python. Usted recibe una rica API dinámica base de datos de acceso de forma gratuita - pero todavía se puede escribir SQL si es necesario.</p>
-    </div>
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/orm.png">
-    </div>
-</div>
-
-<div class="row featurette">
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/admin.png">
-    </div>
-    <div class="col-md-7">
-        <h2 class="featurette-heading">Interfaz de administración automática</h2>
-        <p class="lead">Ahórrese el trabajo tedioso de crear interfaces para añadir y actualizar contenido. Django lo hace automáticamente, y esta listo para producción.</p>
-    </div>
-</div>
-
-<div class="row featurette">
-    <div class="col-md-7">
-        <h2 class="featurette-heading">Diseño de URL elegantes</h2>
-        <p class="lead">Diseña URL elegantes,  sin limitaciones específicas del framework. Se tan flexible como quieras.</p>
-    </div>
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/urls.png">
-    </div>
-</div>
-
-<div class="row featurette">
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/templates.png">
-    </div>
-    <div class="col-md-7">
-        <h2 class="featurette-heading">Diseño de templates</h2>
-        <p class="lead">Usa el poderoso y extensible lenguaje de templates de Django, fácil de usar para los diseñadores, separa el diseño, contenido y código Python. </p>
-    </div>
-</div>
-
-<div class="row featurette">
-    <div class="col-md-7">
-        <h2 class="featurette-heading">Sistema de Cache</h2>
-        <p class="lead">Engánchate dentro del memchached u otros caches frameworks para super performance</p>
-    </div>
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/cache.png">
-    </div>
-</div>
-
-<div class="row featurette">
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="{{ STATIC_URL }}img/internacionalizacion.png">
-    </div>
-    <div class="col-md-7">
-        <h2 class="featurette-heading">Internacionalización</h2>
-        <p class="lead">Django tiene soporte para aplicaciones multilenguajes, lo que permite especificar cadenas de traducción y ofrecer ayuda para funcionalidad de lenguajes específicos.</p>
-    </div>
-</div>
-
-<div class="jumbotron">
-    <form class="form-inline" role="form" action="" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input type="text" class="form-control" id="" placeholder="tu correo" name="email">
+<div class="row feature-row">
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/orm.png">
+            <h3>Mapeo objeto relación</h3>
+            <p>Defina sus modelos de datos en su totalidad en Python. Usted recibe una rica API dinámica base de datos de acceso de forma gratuita - pero todavía se puede escribir SQL si es necesario.</p>
         </div>
-        <button type="submit" class="btn btn-lg btn-success">Suscribete</button>
-    </form>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/admin.png">
+            <h3>Interfaz de administración</h3>
+            <p>Ahórrese el trabajo tedioso de crear interfaces para añadir y actualizar contenido. Django lo hace automáticamente, y esta listo para producción.</p>
+        </div>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/urls.png">
+            <h3>Diseño de URL elegantes</h3>
+            <p>Diseña URL elegantes,  sin limitaciones específicas del framework. Se tan flexible como quieras.</p>
+        </div>
+    </div><!-- /.col-lg-4 -->
 </div>
+<div class="row feature-row">
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/templates.png">
+            <h3>Diseño de templates</h3>
+            <p>Usa el poderoso y extensible lenguaje de templates de Django, fácil de usar para los diseñadores, separa el diseño, contenido y código Python. </p>
+        </div>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/cache.png">
+            <h3>Sistema de Cache</h3>
+            <p>Engánchate dentro del memchached u otros caches frameworks para super performance</p>
+        </div>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+        <div class="feature-box">
+            <img class="img-rounded" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="{{ STATIC_URL }}img/internacionalizacion.png">
+            <h3>Internacionalización</h3>
+            <p>Django tiene soporte para aplicaciones multilenguajes, lo que permite especificar cadenas de traducción y ofrecer ayuda para funcionalidad de lenguajes específicos.</p>
+        </div>
+    </div><!-- /.col-lg-4 -->
+</div>
+
+<section id="newsletter" class="section active-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="overview">
+                    <h1>Mantente informado</h1>
+                    <p class="lead">¡Únete al grupo de desarrolladores django en México!</p>
+                </div>
+                <form id="newsletter-form" role="form" action="" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" placeholder="Ingresa tu correo" name="email">
+                        <span class="input-group-btn">
+                            <button id="subscribe-button" class="btn btn-lg btn-default" type="submit">Suscribete</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

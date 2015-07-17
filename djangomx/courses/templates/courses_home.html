@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% load compress %}
 
-{% block title%}Django México - Blog{% endblock %}
+{% block title%}Django México - Cursos{% endblock %}
+{% block activecourse %}class="active"{% endblock %}
 
 {% block content %}
-<h1>Courses</h1>
+<div class="row">
+    <div class="jumbotron">
+        <h2 class="welcome-h2">¡Cursos!</h2>
+        <p class="welcome-p">Estamos planeando sacar una serie de cursos para principios de verano de el 2015. Mantente informado.</p>
+    </div> 
+</div>
 {% endblock %}

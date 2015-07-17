@@ -1,5 +1,6 @@
 from common import *
 
+
 INSTALLED_APPS += (
     'debug_toolbar',
     'django_extensions',
@@ -16,9 +17,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TEMPLATE_CONTEXT': True,
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'djangomx.db',
-    }
-}
+try:
+    from .local_settings import *
+except ImportError as e:
+    pass
