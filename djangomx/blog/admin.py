@@ -1,10 +1,13 @@
 # coding: utf-8
 from django.contrib import admin
 from django.forms import ModelForm
+from django.db.models import TextField
 from blog.models import Category, Post
 from django.core.exceptions import PermissionDenied
 
 from suit_redactor.widgets import RedactorWidget
+
+from django_markdown.admin import AdminMarkdownWidget
 
 
 class PageForm(ModelForm):
@@ -39,7 +42,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    form = PageForm
+    formfield_overrides = {
+        TextField: {
+            'widget': AdminMarkdownWidget
+        }
+    }
+
     prepopulated_fields = {'slug': ('title', )}
     list_display = (
         'title',

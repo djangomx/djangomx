@@ -36,6 +36,7 @@ urlpatterns = patterns(
             template_name='sitemap.xml', content_type='text/xml'
         )
     ),
+    url(r'^markdown/', include('django_markdown.urls')),
 )
 
 if settings.DEBUG:

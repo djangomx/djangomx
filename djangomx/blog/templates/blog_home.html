@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load django_markdown %}
 
 {% block title%}Django México - Blog{% endblock %}
 {% block activeblog %}class="active"{% endblock %}
@@ -31,7 +32,7 @@
           <img src="{{ post.image.url }}" class="img-responsive img-rounded">
           <hr>
           {% endif %}
-          {{ post.description|truncatechars:250 }}
+          {{ post.description | markdown}}
           <br>
           <a class="btn btn-default btn-xs" href="{% url 'view_post' slug=post.slug %}">Continua leyendo »</a>
         </div><!-- End of post -->

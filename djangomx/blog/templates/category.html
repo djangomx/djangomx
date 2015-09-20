@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load django_markdown %}
 
 {% block title%}Django México - Blog{% endblock %}
 {% block activeblog %}class="active"{% endblock %}
@@ -23,7 +24,7 @@
                 <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por <a href="#">{{ post.author }}</a>
             </p>
             <hr>
-            {{ post.content|safe|escape }}
+            {{ post.content | markdown }}
             {% if post.image %}
             <hr>
             <img src="{{ post.image.url }}" class="img-responsive img-rounded">

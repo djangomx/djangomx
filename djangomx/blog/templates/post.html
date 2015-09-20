@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load django_markdown %}
 
 {% block title%}{{ post.title }} — Django México{% endblock %}
 {% block title-content %}{{ post.title }}{% endblock %}
@@ -43,7 +44,7 @@
             <img src="{{ post.image.url }}" class="img-responsive img-rounded">
             <hr>
             {% endif %}
-            {{ post.content|safe|escape }}
+            {{ post.content | markdown}}
             <hr>
 
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://django.mx{% url 'view_post' post.slug %}" data-via="django_mx" data-hashtags="django">Tweet</a>

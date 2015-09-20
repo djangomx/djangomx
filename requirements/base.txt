@@ -1,6 +1,7 @@
 Django==1.8
 django-annoying==0.8.1
 django-compressor==1.4
+django-extensions==1.5.5
 django-suit==0.2.13
 sorl-thumbnail==12.2
 bpython==0.14.1
@@ -12,3 +13,5 @@ Unipath==1.1
 Pillow==2.8.1
 mailchimp==2.0.9
 psycopg2==2.6
+django-markdown
+Pygments
