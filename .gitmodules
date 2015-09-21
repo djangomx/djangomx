@@ -1,3 +1,0 @@
-[submodule "djangomx/utilities"]
-	path = djangomx/utilities
-	url = https://github.com/netoxico/utilities.git
