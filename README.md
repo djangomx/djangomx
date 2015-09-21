@@ -29,17 +29,18 @@ npm install -g less
 Crea la base de datos
 ```
 sudo su - postgres
-
 ```
 
 Installa los requerimientos del proyecto:
 
-`$ pip install -r requirements/development.txt`
+```
+$ pip install -r requirements/development.txt
+```
 
 Crea el archivo de configuración:
 
 ```json
-// djangomx/conf/secrets.json
+// conf/secrets.json
 
 {
     "db_name": "database",
