@@ -6,6 +6,16 @@ djangomx
 
 http://django.mx sitio en desarrollo
 
+## Contributing
+
+### Requerimientos
+
+Asegurate de tener instalados los siguientes programas:
+
+* Node.js
+* Less
+* Postgresql
+
 Instala Node.js
 ```
 brew install node
@@ -16,13 +26,26 @@ Instalar less
 npm install -g less
 ```
 
-Actualizar submodulo
-```
-git submodule update --init
-```
-
 Crea la base de datos
 ```
 sudo su - postgres
 
+```
+
+Installa los requerimientos del proyecto:
+
+`$ pip install -r requirements/development.txt`
+
+Crea el archivo de configuración:
+
+```json
+// djangomx/conf/secrets.json
+
+{
+    "db_name": "database",
+    "db_user": "user",
+    "db_password": "password",
+    "db_host": "",
+    "secret_key": "baconislife"
+}
 ```
