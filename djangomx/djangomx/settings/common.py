@@ -114,11 +114,11 @@ INSTALLED_APPS = (
 
     'blog',
     'contact',
+    'core',
     'courses',
     'jobs',
-    'utilities',
     'newsletter',
-    'accounts'
+    'accounts',
 )
 
 COMPRESS_ENABLED = True

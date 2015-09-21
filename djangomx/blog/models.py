@@ -1,13 +1,14 @@
 # coding: utf-8
 import os
-from django.db import models
-from django.utils.translation import ugettext as _
-from django.core import urlresolvers
+
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
+from django.core import urlresolvers
+from django.db import models
+from django.utils.translation import ugettext as _
 
-from utilities.utils import get_filename
-from django.contrib.auth.models import User
+from core.utils import get_filename
 
 
 class Category(models.Model):

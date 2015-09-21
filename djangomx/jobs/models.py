@@ -1,14 +1,11 @@
 # coding: utf-8
 import os
-from django.db import models
 from datetime import datetime
+
+from django.db import models
 from django.template.defaultfilters import slugify
 
-
-def get_filename(extension):
-    """ Returns a unique file name based on its extension """
-    ts = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    return '%s%s' % (ts, extension)
+from core.utils import get_filename
 
 
 def get_upload_to(instance, filename):
