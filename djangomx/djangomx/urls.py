@@ -1,14 +1,13 @@
-from django.conf.urls import patterns, include, url
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     url(r'^', include('accounts.urls', namespace='accounts')),
 
@@ -36,7 +35,7 @@ urlpatterns = patterns(
         )
     ),
 
-)
+]
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns() + static(

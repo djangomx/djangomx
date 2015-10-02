@@ -1,10 +1,10 @@
-#coding: utf-8
-try:
-    from django.conf.urls import *
-except ImportError:  # django < 1.4
-    from django.conf.urls.defaults import *
+# coding: utf-8
+from django.conf.urls import url
 
-urlpatterns = patterns(
-    'contact.views',
-    url(r'^$', 'contact_home', name='contact_home'),
-)
+from . import views
+
+urlpatterns = [
+
+    url(r'^$', views.contact_home, name='contact_home'),
+
+]

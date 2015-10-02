@@ -1,10 +1,11 @@
 # coding: utf-8
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
+from . import views
 
-urlpatterns = patterns(
-    'accounts.views',
-    url(r'^$', 'home', name='home'),
-    url(r'^@(?P<username>\w+)$', 'profile', name='profile'),
+urlpatterns = [
 
-)
+    url(r'^$', views.home, name='home'),
+    url(r'^@(?P<username>\w+)$', views.profile, name='profile'),
+
+]

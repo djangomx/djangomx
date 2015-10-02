@@ -1,11 +1,10 @@
 # coding: utf-8
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from . import views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     url(r'^subscribe', views.subscribe_request, name='subscribe'),
 
-)
+]
