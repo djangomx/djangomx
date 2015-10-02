@@ -9,18 +9,17 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', 'djangomx.views.home', name='home'),
-    url(r'^@', include('accounts.urls')),
 
-    url(r'^subscribe', 'djangomx.views.subscribe_request', name='subscribe'),
+    url(r'^', include('accounts.urls', namespace='accounts')),
+
+    url(r'^', include('newsletter.urls', namespace='subscribe')),
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^blog/', include('blog.urls')),
-    url(r'^contacto/', include('contact.urls')),
-    url(r'^cursos/', include('courses.urls')),
-    url(r'^ofertas/', include('jobs.urls')),
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^contacto/', include('contact.urls', namespace='contact')),
+    url(r'^cursos/', include('courses.urls', namespace='courses')),
+    url(r'^ofertas/', include('jobs.urls', namespace='jobs')),
 
     url(r'^404/$', TemplateView.as_view(template_name='404.html')),
     url(r'^500/$', TemplateView.as_view(template_name='500.html')),
@@ -36,7 +35,7 @@ urlpatterns = patterns(
             template_name='sitemap.xml', content_type='text/xml'
         )
     ),
-    url(r'^markdown/', include('django_markdown.urls')),
+
 )
 
 if settings.DEBUG:
