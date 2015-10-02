@@ -21,14 +21,16 @@ Instala Node.js
 brew install node
 ```
 
-Instalar less
+Instala less
 ```
 npm install -g less
 ```
 
+Instrucciones para instalar postgres: http://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/
+
 Crea la base de datos
 ```
-sudo su - postgres
+createdb -E utf8 database
 ```
 
 Installa los requerimientos del proyecto:
