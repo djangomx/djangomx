@@ -6,6 +6,7 @@ install:
   - pip install -r requirements/production.txt
   - pip install coveralls
 script:
-  - coverage run djangomx/manage.py test
+  - cd djangomx
+  - coverage run manage.py test
 after_success:
   coveralls

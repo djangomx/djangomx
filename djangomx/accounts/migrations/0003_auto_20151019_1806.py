@@ -5,6 +5,14 @@ from django.db import models, migrations
 from django.conf import settings
 
 
+def create_gravatars(apps, schema_editor):
+    Profile = apps.get_model('accounts', 'Profile')
+
+    for p in Profile.objects.all():
+        p.avatar = p.user.email
+        p.save()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -12,6 +20,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+
         migrations.RemoveField(
             model_name='profile',
             name='avatar',
@@ -26,4 +35,5 @@ class Migration(migrations.Migration):
             name='user',
             field=models.OneToOneField(related_name='profile', to=settings.AUTH_USER_MODEL),
         ),
+        migrations.RunPython(create_gravatars),
     ]
