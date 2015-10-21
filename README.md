@@ -1,7 +1,7 @@
 djangomx
 ========
 
-[![Build Status](https://travis-ci.org/dubnio/djangomx.svg?branch=master)](https://travis-ci.org/dubnio/djangomx)
+[![Build Status](https://travis-ci.org/djangomx/djangomx.svg?branch=master)](https://travis-ci.org/djangomx/djangomx)
 [![Coverage Status](https://coveralls.io/repos/dubnio/djangomx/badge.svg?branch=master)](https://coveralls.io/r/dubnio/djangomx?branch=master)
 [![Unete a la discución en slack](https://django-mx.herokuapp.com/badge.svg)](https://django-mx.herokuapp.com)
 
@@ -22,14 +22,16 @@ Instala Node.js
 brew install node
 ```
 
-Instalar less
+Instala less
 ```
 npm install -g less
 ```
 
+Instrucciones para instalar postgres: http://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/
+
 Crea la base de datos
 ```
-sudo su - postgres
+createdb -E utf8 database
 ```
 
 Installa los requerimientos del proyecto:
