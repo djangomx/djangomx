@@ -1,17 +1,27 @@
 # coding: utf-8
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView, TemplateView
 
-from annoying.decorators import render_to
-
-
-@render_to("accounts/profile.html")
-def profile(request, username):
-    user = get_object_or_404(User, username=username)
-    return {'user': user}
+from blog.models import Post
+from .models import Profile
 
 
-@render_to("home.html")
-def home(request):
+class ProfileView(DetailView):
+    """ User profile page """
+    template_name = 'accounts/profile.html'
+    model = Profile
+    slug_field = 'user__username'
+    slug_url_kwarg = 'username'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProfileView, self).get_context_data(*args, **kwargs)
+        user = self.object.user
+        context.update({
+            'user': user,
+            'posts': Post.objects.filter(author=user)
+        })
+        return context
+
+
+class HomeView(TemplateView):
     """ Renders django.mx home page """
-    return {}
+    template_name = 'home.html'
