@@ -95,11 +95,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {% block activehome %}{% endblock %}><a href="{% url 'home' %}">Inicio</a></li>
-                    <li {% block activejobs %}{% endblock %}><a href="{% url 'jobs_home' %}">Ofertas de Trabajo</a></li>
-                    <li {% block activeblog %}{% endblock %}><a href="{% url 'blog_home' %}">Blog</a></li>
-                    <li {% block activecourse %}{% endblock %}><a href="{% url 'courses_home' %}">Cursos</a></li>
-                    <li {% block activecontact %}{% endblock %}><a href="{% url 'contact_home' %}">Contacto</a></li>
+                    <li {% block activehome %}{% endblock %}><a href="{% url 'accounts:home' %}">Inicio</a></li>
+                    <li {% block activejobs %}{% endblock %}><a href="{% url 'jobs:jobs_home' %}">Ofertas de Trabajo</a></li>
+                    <li {% block activeblog %}{% endblock %}><a href="{% url 'blog:blog_home' %}">Blog</a></li>
+                    <li {% block activecourse %}{% endblock %}><a href="{% url 'courses:courses_home' %}">Cursos</a></li>
+                    <li {% block activecontact %}{% endblock %}><a href="{% url 'contact:contact_home' %}">Contacto</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

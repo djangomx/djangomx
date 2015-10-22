@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^$', views.courses_home, name='courses_home'),
+    url(r'^subscribe', views.subscribe_request, name='subscribe'),
 
 ]

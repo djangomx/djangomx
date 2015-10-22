@@ -37,7 +37,7 @@
             <h2 class="blog-post-title">{{ post.title }}</h2>
             <p class="blog-post-meta">
                 <span class="glyphicon glyphicon-calendar"></span>{{ post.created_at }} por
-                <a href="{% url 'profile' username=post.author.username%}">{{ post.author.username }}</a>
+                <a href="{% url 'accounts:profile' username=post.author.username%}">{{ post.author.username }}</a>
             </p>
             <hr>
             {% if post.image %}
@@ -47,9 +47,9 @@
             {{ post.content | markdown}}
             <hr>
 
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://django.mx{% url 'view_post' post.slug %}" data-via="django_mx" data-hashtags="django">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://django.mx{% url 'blog:view_post' post.slug %}" data-via="django_mx" data-hashtags="django">Tweet</a>
 
-            <div class="fb-share-button" data-href="https://django.mx{% url 'view_post' post.slug %}" data-layout="button_count"></div>
+            <div class="fb-share-button" data-href="https://django.mx{% url 'blog:view_post' post.slug %}" data-layout="button_count"></div>
 
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 

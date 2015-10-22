@@ -109,6 +109,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'compressor',
+    'django_gravatar',
     'sorl.thumbnail',
     'django_markdown',
 
@@ -176,3 +177,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 )
 
 MARKDOWN_EXTENSIONS = ['codehilite']
+
+# django_gravatar settings
+GRAVATAR_DEFAULT_SIZE = 180
+GRAVATAR_DEFAULT_IMAGE = 'retro'

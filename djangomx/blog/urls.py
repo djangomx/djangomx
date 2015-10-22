@@ -1,16 +1,14 @@
 # coding: utf-8
-try:
-    from django.conf.urls import *
-except ImportError:  # django < 1.4
-    from django.conf.urls.defaults import *
+from django.conf.urls import url
 
-from .views import LatestEntriesFeed
+from . import views
 
-urlpatterns = patterns(
-    'blog.views',
-    url(r'^$', 'blog_home', name='blog_home'),
-    url(r'^categoria/(?P<category_slug>[-\w]+)/$', 'category', name='category'),
-    url(r'^archivos/$', 'archives', name='archives'),
-    (r'^feed/$', LatestEntriesFeed()),
-    url(r'^entrada/(?P<slug>[-\w]+)/$', 'view_post', name='view_post'),
-)
+urlpatterns = [
+
+    url(r'^$', views.blog_home, name='blog_home'),
+    url(r'^categoria/(?P<category_slug>[-\w]+)/$', views.category, name='category'),
+    url(r'^archivos/$', views.archives, name='archives'),
+    url(r'^feed/$', views.LatestEntriesFeed()),
+    url(r'^entrada/(?P<slug>[-\w]+)/$', views.view_post, name='view_post'),
+
+]
