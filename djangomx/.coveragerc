@@ -1,0 +1,10 @@
+[report]
+exclude_lines =
+    pragma: no cover
+
+        def __str__
+
+omit =
+    */migrations/*
+
+show_missing = True
