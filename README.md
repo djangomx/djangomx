@@ -2,7 +2,7 @@ djangomx
 ========
 
 [![Build Status](https://travis-ci.org/djangomx/djangomx.svg?branch=master)](https://travis-ci.org/djangomx/djangomx)
-[![Coverage Status](https://coveralls.io/repos/dubnio/djangomx/badge.svg?branch=master)](https://coveralls.io/r/dubnio/djangomx?branch=master)
+[![Coverage Status](https://coveralls.io/repos/djangomx/djangomx/badge.svg?branch=master&service=github)](https://coveralls.io/github/djangomx/djangomx?branch=master)
 [![Unete a la discución en slack](https://django-mx.herokuapp.com/badge.svg)](https://django-mx.herokuapp.com)
 
 http://django.mx sitio en desarrollo
