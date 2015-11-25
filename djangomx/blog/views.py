@@ -74,6 +74,7 @@ def archives(request):
     years = {k:list(g) for k, g in groupby(
             sorted(posts_list,key=lambda x: x.published_at.date().year), 
         lambda x: x.published_at.date().year)}
+    
     return {
         'archives': years
     }
