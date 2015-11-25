@@ -7,6 +7,6 @@ install:
   - pip install coveralls
 script:
   - cd djangomx
-  - nosetests --with-coverage --cover-package=accounts,blog --verbosity=1
+  - python manage test
 after_success:
   - coveralls
