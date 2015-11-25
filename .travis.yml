@@ -7,6 +7,6 @@ install:
   - pip install coveralls
 script:
   - cd djangomx
-  - python manage test
+  - python manage.py test
 after_success:
   - coveralls
