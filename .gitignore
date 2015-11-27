@@ -15,5 +15,6 @@ local_settings.py
 media/
 public/
 CACHE/
+env/
 
 secrets.json
