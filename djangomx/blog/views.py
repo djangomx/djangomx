@@ -1,7 +1,4 @@
 # coding: utf-8
-from itertools import groupby
-from collections import defaultdict
-
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.syndication.views import Feed
@@ -19,11 +16,14 @@ def blog_home(request):
     paginator = Paginator(posts_list, 4)
 
     page = request.GET.get('page')
-    page = paginator.num_pages if not page else (
-        1 if not page.isdigit() else 
-            (page if paginator.num_pages <= page else 1))
-
-    posts = paginator.page(page)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # IF page is not an intenger, deliver first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
 
     return {
         'posts': posts,
@@ -52,11 +52,14 @@ def category(request, category_slug):
     paginator = Paginator(posts_list, 5)
 
     page = request.GET.get('page')
-    page = paginator.num_pages if not page else (
-        1 if not page.isdigit() else 
-            (page if paginator.num_pages <= page else 1))
-
-    posts = paginator.page(page)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # IF page is not an intenger, deliver first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        posts = paginator.page(paginator.num_pages)
 
     return {
         'category': category,
@@ -70,11 +73,21 @@ def category(request, category_slug):
 def archives(request):
     posts_list = Post.objects.filter(is_active=True).order_by('-published_at')
 
-    # Order post by creation and then create groups by year
-    years = {k:list(g) for k, g in groupby(
-            sorted(posts_list,key=lambda x: x.published_at.date().year), 
-        lambda x: x.published_at.date().year)}
-    
+    years = {
+        '2015': [],
+    }
+
+    for year in years:
+        list_posts = []
+        for post in posts_list:
+            post_date = post.pub_date.date()
+            year_post = post_date.year
+
+            if year_post == int(year):
+                list_posts.append(post)
+
+        years[year] = list_posts
+
     return {
         'archives': years
     }
