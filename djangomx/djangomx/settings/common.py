@@ -97,7 +97,7 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS = [
+INSTALLED_APPS = (
     'suit',
     'suit_redactor',
     'django.contrib.auth',
@@ -120,7 +120,7 @@ INSTALLED_APPS = [
     'jobs',
     'newsletter',
     'accounts',
-]
+)
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False
@@ -181,13 +181,3 @@ MARKDOWN_EXTENSIONS = ['codehilite']
 # django_gravatar settings
 GRAVATAR_DEFAULT_SIZE = 180
 GRAVATAR_DEFAULT_IMAGE = 'retro'
-
-# Django nose
-INSTALLED_APPS.append('django_nose')
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-NOSE_ARGS = [
-    '--with-coverage',
-    #'--verbosity=0',
-    '--with-fixture-bundling',
-    '--cover-package=accounts,blog'
-]
