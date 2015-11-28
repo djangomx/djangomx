@@ -15,10 +15,11 @@ except IOError:
     }
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
-    ('Admin', 'me@netoxico.com'),
+    ('netoxico', 'me@netoxico.com'),
+    ('andyosuna', 'andyosuna@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -73,6 +74,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -82,6 +84,7 @@ TEMPLATES = [
                 'django.core.context_processors.static',
                 'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request'
             ],
         },
     },
