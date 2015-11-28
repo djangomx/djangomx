@@ -112,6 +112,7 @@ INSTALLED_APPS = [
     'django_gravatar',
     'sorl.thumbnail',
     'django_markdown',
+    'django_nose',
 
     'blog',
     'contact',
@@ -164,12 +165,12 @@ LOGGING = {
 
 DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
 
-# Sourl thumbnail settings
+# sorl-thumbnail settings
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
 
-# Django SUIT configuration
+# django-suit settings
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
@@ -182,12 +183,11 @@ MARKDOWN_EXTENSIONS = ['codehilite']
 GRAVATAR_DEFAULT_SIZE = 180
 GRAVATAR_DEFAULT_IMAGE = 'retro'
 
-# Django nose
-INSTALLED_APPS.append('django_nose')
+# django-nose settings
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 NOSE_ARGS = [
     '--with-coverage',
-    #'--verbosity=0',
     '--with-fixture-bundling',
     '--cover-package=accounts,blog'
 ]

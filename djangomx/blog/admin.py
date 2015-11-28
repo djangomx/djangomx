@@ -1,15 +1,15 @@
 # coding: utf-8
 from django.contrib import admin
-from django.forms import ModelForm
-from django.db.models import TextField
 from django.core.exceptions import PermissionDenied
+from django.db.models import TextField
+from django.forms import ModelForm
 from django.utils.translation import ugettext as _
 
+from django_markdown.admin import AdminMarkdownWidget
 from suit_redactor.widgets import RedactorWidget
 
-from django_markdown.admin import AdminMarkdownWidget
+from .models import Category, Post
 
-from blog.models import Category, Post
 
 class PageForm(ModelForm):
     class Meta:
@@ -41,13 +41,18 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     list_display = ('title', 'slug', 'created_at', 'is_active')
 
+
 def disable_posts(modeladmin, request, queryset):
     queryset.update(is_active=False)
+
 disable_posts.short_description = _("Disable Selected Post")
+
 
 def available_posts(modeladmin, request, queryset):
     queryset.update(is_active=True)
+
 available_posts.short_description = _("Available Selected Post")
+
 
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {

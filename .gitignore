@@ -1,20 +1,26 @@
+# system
 .DS_Store
+*.swp
+
+# binaries
 *.pyc
 *.pyo
-*.swp
 __pycache__
 
-*.db
-*sqlite3
-virtualenv
+# editor
+*.sublime-*
+
+# testing
+local_settings.py
 .codeintel
 .coverage
 .coveralls.yml
-*.sublime-project
-*.sublime-workspace
-local_settings.py
-media/
-public/
-CACHE/
 
+# project
+virtualenv
 secrets.json
+
+# build
+media
+public
+CACHE
