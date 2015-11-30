@@ -1,9 +1,6 @@
 # coding: utf-8
 from django.db import DataError
 from django.test import TestCase
-# from django.utils.text import slugify
-
-# from model_mommy import mommy
 
 from core.utils import truncated_slugify
 
