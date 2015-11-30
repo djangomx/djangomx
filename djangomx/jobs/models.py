@@ -1,16 +1,9 @@
 # coding: utf-8
-import os
-
 from django.core.urlresolvers import reverse
 from django.db import models
 
 from core.models import TimeStamppedModel
-from core.utils import get_filename, truncated_slugify
-
-
-def get_upload_to(instance, filename):
-    name, ext = os.path.splitext(filename)
-    return 'jobs-images/%s' % get_filename(ext)
+from core.utils import truncated_slugify
 
 
 class Job(TimeStamppedModel):

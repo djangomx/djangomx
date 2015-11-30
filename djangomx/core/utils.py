@@ -1,4 +1,5 @@
 # coding: utf-8
+import os
 from datetime import datetime
 
 from django.utils.text import slugify
@@ -10,6 +11,18 @@ def get_filename(extension):
     """
     ts = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     return '%s%s' % (ts, extension)
+
+
+def get_upload_to(instance, filename, dirname=''):
+    """
+    Returns a file name and extension with a directory to upload to if provided.
+    """
+    name, ext = os.path.splitext(filename)
+
+    if dirname:
+        return '%s/%s' % (dirname, get_filename(ext))
+
+    return '%s' % get_filename(ext)
 
 
 def truncated_slugify(string, max_length=75):
