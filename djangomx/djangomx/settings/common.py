@@ -192,5 +192,5 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--with-fixture-bundling',
-    '--cover-package=accounts,blog'
+    '--cover-package=accounts,blog,jobs',
 ]

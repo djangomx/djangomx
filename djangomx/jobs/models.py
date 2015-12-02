@@ -1,28 +1,19 @@
 # coding: utf-8
-import os
-from datetime import datetime
-
+from django.core.urlresolvers import reverse
 from django.db import models
-from django.template.defaultfilters import slugify
 
-from core.utils import get_filename
-
-
-def get_upload_to(instance, filename):
-    name, ext = os.path.splitext(filename)
-    return 'jobs-images/%s' % get_filename(ext)
+from core.models import TimeStamppedModel
+from core.utils import truncated_slugify
 
 
-class Job(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    content = models.TextField(max_length=400)
+class Job(TimeStamppedModel):
+    title = models.CharField(max_length=75)
+    slug = models.SlugField(unique=True, max_length=75)
+    content = models.TextField(max_length=500)
     contact = models.EmailField()
 
-    active = models.BooleanField(default=True)
-    aproved = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    is_approved = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Oferta de trabajo'
@@ -33,7 +24,14 @@ class Job(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.slug = '%s-%s' % (
-            datetime.now().strftime('%Y-%m-%d_%H-%M-%S'), slugify(self.title)
-        )
+        self.slug = truncated_slugify(self.title)
         super(Job, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        kwargs = {
+            'year': self.created_at.year,
+            'month': self.created_at.month,
+            'day': self.created_at.day,
+            'slug': self.slug,
+        }
+        return reverse('jobs:job_detail', kwargs=kwargs)
