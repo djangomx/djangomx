@@ -4,3 +4,10 @@ omit =
     */site-packages/nose/*
     *__init__*
     */migrations/*
+    */python?.?/*
+    */site-packages/nose/*
+    *__init__*
+    */tests.py
+    */admin.py
+
+show_missing = True
