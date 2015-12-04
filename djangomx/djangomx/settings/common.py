@@ -181,6 +181,7 @@ NOSE_ARGS = [
     '--with-coverage',
     '--with-fixture-bundling',
     '--cover-package=accounts,blog,jobs',
+    '-s',
 ]
 
 NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
