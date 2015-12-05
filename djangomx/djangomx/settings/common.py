@@ -53,6 +53,7 @@ STATICFILES_FINDERS = (
 
 
 MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -111,6 +112,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django_markdown',
     'django_nose',
+    'opbeat.contrib.django',
 
     'blog',
     'contact',
@@ -163,6 +165,8 @@ LOGGING = {
 
 DEFAULT_FROM_EMAIL = 'Django Mexico <noreply@django.mx>'
 
+NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
+
 # sorl-thumbnail settings
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
@@ -183,4 +187,9 @@ NOSE_ARGS = [
     '--cover-package=accounts,blog,jobs',
 ]
 
-NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
+# opbeat settings
+OPBEAT = {
+    'ORGANIZATION_ID': '9652e6f850dd4856857cc34028a163a6',
+    'APP_ID': '9f9c5def57',
+    'SECRET_TOKEN': '4c8c3b73ae8bf4c66945cceac29163752cabe53f',
+}
