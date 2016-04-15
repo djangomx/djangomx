@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'suit',
     'suit_redactor',
     'django.contrib.auth',
@@ -119,7 +119,7 @@ INSTALLED_APPS = (
     'jobs',
     'newsletter',
     'accounts',
-)
+]
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = False

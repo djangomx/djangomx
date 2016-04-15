@@ -109,7 +109,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('blog.views.view_post', args=[str(self.slug)])
+        return reverse('blog:view_post', args=[str(self.slug)])
 
     @property
     def full_url(self):
