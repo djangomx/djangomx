@@ -2,6 +2,7 @@
 import os
 import json
 from unipath import FSPath as Path
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
@@ -74,18 +75,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug': DEBUG,
-            'context_processors': [
+            'context_processors': (
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.media',
-                'django.core.context_processors.static',
-                'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.request'
-            ],
+            ) + TCP,
         },
     },
 ]
@@ -172,13 +167,6 @@ DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
-
-# django-suit settings
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
-)
 
 MARKDOWN_EXTENSIONS = ['codehilite']
 

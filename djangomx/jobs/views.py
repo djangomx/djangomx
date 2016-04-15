@@ -10,7 +10,7 @@ from .forms import JobForm
 @render_to("jobs_home.html")
 def jobs_home(request):
     """ Render Job opportunities home page. """
-    jobs = Job.objects.filter(active=True, aproved=True)
+    jobs = Job.objects.filter(is_active=True, is_approved=True)
     form = JobForm()
     return {'jobs': jobs, 'form': form}
 
