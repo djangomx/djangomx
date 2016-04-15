@@ -1,12 +1,14 @@
 # coding: utf-8
+from itertools import groupby
+
 from django.shortcuts import get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.syndication.views import Feed
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.urlresolvers import reverse
 
 from annoying.decorators import render_to
 
-from blog.models import Category, Post
+from .models import Category, Post
 
 
 @render_to("blog_home.html")
@@ -16,13 +18,12 @@ def blog_home(request):
     paginator = Paginator(posts_list, 4)
 
     page = request.GET.get('page')
+
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
-        # IF page is not an intenger, deliver first page
         posts = paginator.page(1)
     except EmptyPage:
-        # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
 
     return {
@@ -46,19 +47,17 @@ def view_post(request, slug):
 @render_to('category.html')
 def category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
-    posts_list = Post.objects.filter(is_active=True,
-        category=category).order_by('-published_at')
+    posts_list = Post.objects.filter(is_active=True, category=category).order_by('-published_at')
     categories = Category.objects.filter(is_active=True)
     paginator = Paginator(posts_list, 5)
 
     page = request.GET.get('page')
+
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
-        # IF page is not an intenger, deliver first page
         posts = paginator.page(1)
     except EmptyPage:
-        # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
 
     return {
@@ -73,24 +72,15 @@ def category(request, category_slug):
 def archives(request):
     posts_list = Post.objects.filter(is_active=True).order_by('-published_at')
 
+    # Order post by creation and then create groups by year
     years = {
-        '2015': [],
+        k: list(g) for k, g in groupby(
+            sorted(posts_list, key=lambda x: x.published_at.date().year),
+            lambda x: x.published_at.date().year
+        )
     }
 
-    for year in years:
-        list_posts = []
-        for post in posts_list:
-            post_date = post.pub_date.date()
-            year_post = post_date.year
-
-            if year_post == int(year):
-                list_posts.append(post)
-
-        years[year] = list_posts
-
-    return {
-        'archives': years
-    }
+    return {'archives': years}
 
 
 class LatestEntriesFeed(Feed):

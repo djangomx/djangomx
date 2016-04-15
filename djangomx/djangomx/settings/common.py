@@ -2,6 +2,7 @@
 import os
 import json
 from unipath import FSPath as Path
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
@@ -15,10 +16,11 @@ except IOError:
     }
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
 
 ADMINS = (
-    ('Admin', 'me@netoxico.com'),
+    ('netoxico', 'me@netoxico.com'),
+    ('andyosuna', 'andyosuna@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -73,16 +75,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
+            'context_processors': (
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.i18n',
-                'django.core.context_processors.media',
-                'django.core.context_processors.static',
-                'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-            ],
+            ) + TCP,
         },
     },
 ]
@@ -112,6 +110,7 @@ INSTALLED_APPS = (
     'django_gravatar',
     'sorl.thumbnail',
     'django_markdown',
+    'django_nose',
 
     'blog',
     'contact',
@@ -164,20 +163,22 @@ LOGGING = {
 
 DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
 
-# Sourl thumbnail settings
+# sorl-thumbnail settings
 THUMBNAIL_DEBUG = True
 THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
 THUMBNAIL_QUALITY = 100
-
-# Django SUIT configuration
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
-TEMPLATE_CONTEXT_PROCESSORS = TCP + (
-    'django.core.context_processors.request',
-)
 
 MARKDOWN_EXTENSIONS = ['codehilite']
 
 # django_gravatar settings
 GRAVATAR_DEFAULT_SIZE = 180
 GRAVATAR_DEFAULT_IMAGE = 'retro'
+
+# django-nose settings
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--with-fixture-bundling',
+    '--cover-package=accounts,blog,jobs',
+]

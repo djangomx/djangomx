@@ -1,4 +1,6 @@
 # coding: utf-8
+from django.views.generic import DetailView
+
 from annoying.decorators import render_to, ajax_request
 
 from .models import Job
@@ -8,7 +10,7 @@ from .forms import JobForm
 @render_to("jobs_home.html")
 def jobs_home(request):
     """ Render Job opportunities home page. """
-    jobs = Job.objects.filter(active=True, aproved=True)
+    jobs = Job.objects.filter(is_active=True, is_approved=True)
     form = JobForm()
     return {'jobs': jobs, 'form': form}
 
@@ -24,3 +26,8 @@ def new_job(request):
         else:
             return {'success': False, 'errors': form.errors.keys()}
     return {'success': False, 'error': 'Request not valid'}
+
+
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'job_detail.html'

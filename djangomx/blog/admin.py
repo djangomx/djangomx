@@ -1,13 +1,14 @@
 # coding: utf-8
 from django.contrib import admin
-from django.forms import ModelForm
-from django.db.models import TextField
-from blog.models import Category, Post
 from django.core.exceptions import PermissionDenied
-
-from suit_redactor.widgets import RedactorWidget
+from django.db.models import TextField
+from django.forms import ModelForm
+from django.utils.translation import ugettext as _
 
 from django_markdown.admin import AdminMarkdownWidget
+from suit_redactor.widgets import RedactorWidget
+
+from .models import Category, Post
 
 
 class PageForm(ModelForm):
@@ -41,6 +42,18 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'created_at', 'is_active')
 
 
+def disable_posts(modeladmin, request, queryset):
+    queryset.update(is_active=False)
+
+disable_posts.short_description = _("Disable Selected Post")
+
+
+def available_posts(modeladmin, request, queryset):
+    queryset.update(is_active=True)
+
+available_posts.short_description = _("Available Selected Post")
+
+
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         TextField: {
@@ -57,6 +70,7 @@ class PostAdmin(admin.ModelAdmin):
         'is_active',
         'author'
     )
+    actions = [disable_posts, available_posts]
 
     def has_obj_change_permission(self, obj, request):
         if obj.author == request.user or request.user.is_superuser:
@@ -74,9 +88,7 @@ class PostAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(PostAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
-            return qs
-        return qs.filter(author=request.user)
+        return qs if request.user.is_superuser else qs.filter(author=request.user)
 
     def render_change_form(self, request, context, *args, **kwargs):
         if not request.user.is_superuser:
