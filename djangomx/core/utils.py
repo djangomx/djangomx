@@ -29,6 +29,7 @@ def truncated_slugify(string, max_length=75):
     """
     Returns a slug, excludes keywords and truncates it to a default of 75 characters.
     """
+    string = '{}-{}'.format(string, datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
     if len(string) > max_length:
         truncated_string = ''
         for word in string.split(' '):

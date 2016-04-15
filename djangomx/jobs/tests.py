@@ -5,6 +5,7 @@ from django.test import TestCase
 from core.utils import truncated_slugify
 
 from .models import Job
+from .forms import JobForm
 
 
 class JobTestCase(TestCase):
@@ -44,3 +45,12 @@ class JobTestCase(TestCase):
 
         with self.assertRaises(DataError):
             self.job.save()
+
+    def test_title_length_form_validation(self):
+        form_data = {
+            'title': self.long_title,
+            'contact': 'a@b.com',
+            'content': ''
+        }
+        form = JobForm(data=form_data)
+        self.assertFalse(form.is_valid())
