@@ -161,7 +161,7 @@ LOGGING = {
     }
 }
 
-DEFAULT_FROM_EMAIL = 'Django Mexico <no-reply@django.mx>'
+DEFAULT_FROM_EMAIL = 'Django Mexico <noreply@django.mx>'
 
 # sorl-thumbnail settings
 THUMBNAIL_DEBUG = True
