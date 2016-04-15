@@ -1,5 +1,4 @@
 # coding: utf-8
-from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -25,10 +24,7 @@ class Job(TimeStamppedModel):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.slug = '{}-{}'.format(
-            truncated_slugify(self.title),
-            datetime.now().strftime("%Y-%m-%d-%H%M%S")
-        )
+        self.slug = truncated_slugify(self.title)
         super(Job, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
