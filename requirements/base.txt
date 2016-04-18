@@ -16,7 +16,7 @@ nose==1.3.7
 opbeat==3.1.3
 Pillow==2.8.1
 psycopg2==2.6
-Pygments==
+Pygments==2.0.2
 pytz==2015.2
 redis==2.10.3
 sorl-thumbnail==12.2
