@@ -1,5 +1,5 @@
 # coding: utf-8
-import __future__ import unicode_literals
+from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 
 import os
