@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load compress %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -32,8 +32,6 @@
     <link href="{{ STATIC_URL }}css/main.less" rel="stylesheet" type="text/less">
     {% endcompress %}
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
-
     <!--
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}ico/apple-touch-icon-114-precomposed.png">
@@ -105,22 +103,21 @@
         </div>
     </div>
     <div class="navbar-green"></div>
+
     <div class="container">
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </div>
-    <section class="social-section">
-        <div>
-            <a href="https://www.facebook.com/django.mexico" target="_blank" class="btn btn-default btn-lg" role="button">
-                <img src="{{ STATIC_URL }}img/social-facebook.png"> Facebook
-            </a>
-            <a href="https://twitter.com/django_mx" target="_blank" class="btn btn-default btn-lg" role="button">
-                <img src="{{ STATIC_URL }}img/social-twitter.png"> Twitter
-            </a>
-        </div>
-    </section>
+
     <footer>
-        <small>© Copyright · <a href="http://dubnio.com/">dubnio.com</a> · django.mx · 2015 · Todos los derechos reservados · <a href="https://github.com/dubnio/djangomx"><img src="{{ STATIC_URL }}img/social-github.png"></a></small>
-        <a class="github-button" href="https://github.com/dubnio/djangomx" aria-label="Star dubnio/djangomx on GitHub">Star</a>
+        <a href="https://www.facebook.com/django.mexico" target="_blank" class="btn btn-default btn-lg" role="button">
+            <img src="{{ STATIC_URL }}img/social-facebook.png"> Facebook
+        </a>
+        <a href="https://twitter.com/django_mx" target="_blank" class="btn btn-default btn-lg" role="button">
+            <img src="{{ STATIC_URL }}img/social-twitter.png"> Twitter
+        </a>
+        <div class="copyright">
+            <small>© 2016 · <a href="http://dubnio.com/">dubnio.com</a> · django.mx · Todos los derechos reservados · <a href="https://github.com/dubnio/djangomx"><img src="{{ STATIC_URL }}img/social-github.png"></a></small>
+        </div>
     </footer>
     {% compress js %}
     <script src="{{ STATIC_URL }}js/djangomx.js" type="text/javascript"></script>

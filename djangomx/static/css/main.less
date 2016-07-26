@@ -1,8 +1,15 @@
 // Basic
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     font: normal 16px "Droid", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 300;
     color: #323A44;
+    margin-bottom: 217px;
 }
 
 ::selection {
@@ -95,6 +102,34 @@ small, .small {
     box-shadow: none;
 }
 
+
+// Footer
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 30px;
+    background: #252D3A;
+    text-align: center;
+
+    .copyright {
+        background-color: #323A44;
+        color: #FFF;
+        padding: 30px 0;
+        margin-top: 30px;
+        text-align: center;
+        a  {
+           color: #FFF;
+        }
+        a:hover {
+            color: #50AE84;
+        }
+    }
+
+}
+
+
 // Home features
 
 .feature-row {
@@ -158,26 +193,6 @@ small, .small {
     color: #FFF;
     background-color: #323A44;
     border-color: #adadad;
-}
-
-.social-section {
-    margin-top: 50px;
-    padding: 30px 0;
-    background: #252D3A;
-    text-align: center;
-}
-
-footer {
-    background-color: #323A44;
-    color: #FFF;
-    padding: 30px 0;
-    text-align: center;
-    a  {
-       color: #FFF;
-    }
-    a:hover {
-        color: #50AE84;
-    }
 }
 
 .label-error {
