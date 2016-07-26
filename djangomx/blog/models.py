@@ -1,4 +1,7 @@
 # coding: utf-8
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+
 import os
 
 from django.contrib.auth.models import User
@@ -10,23 +13,23 @@ from django.utils.translation import ugettext as _
 
 from core.utils import get_filename
 
-
+@python_2_unicode_compatible
 class Category(models.Model):
     """ Category Model """
     title = models.CharField(
-        verbose_name=_(u'Título'),
-        help_text=_(u' '),
+        verbose_name=_('Título'),
+        help_text=_(' '),
         max_length=255
     )
     slug = models.SlugField(
-        verbose_name=_(u'Slug'),
-        help_text=_(u'Identificador Uri'),
+        verbose_name=_('Slug'),
+        help_text=_('Identificador Uri'),
         max_length=255,
         unique=True
     )
     description = models.CharField(
-        verbose_name=_(u'Descripción'),
-        help_text=_(u' '),
+        verbose_name=_('Descripción'),
+        help_text=_(' '),
         max_length=255,
         blank=True
     )
@@ -35,10 +38,10 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = _(u'Categoría')
-        verbose_name_plural = _(u'Categorías')
+        verbose_name = _('Categoría')
+        verbose_name_plural = _('Categorías')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.title,)
 
 
@@ -47,55 +50,56 @@ def get_img_path(instance, filename):
     return 'blog/%s' % get_filename(ext)
 
 
+@python_2_unicode_compatible
 class Post(models.Model):
     """ Post Model """
     title = models.CharField(
-        verbose_name=_(u'Título'),
-        help_text=_(u' '),
+        verbose_name=_('Título'),
+        help_text=_(' '),
         max_length=255
     )
     description = models.TextField(
-        blank=True, null=True, help_text=u'Descripción usada para SEO'
+        blank=True, null=True, help_text='Descripción usada para SEO'
     )
     slug = models.SlugField(
-        verbose_name=_(u'Slug'),
-        help_text=_(u'Identificador Uri'),
+        verbose_name=_('Slug'),
+        help_text=_('Identificador Uri'),
         max_length=255,
         unique=True
     )
     image = models.ImageField(
-        verbose_name=_(u'Imágen'),
-        help_text=_(u'Imagen destacada'),
+        verbose_name=_('Imágen'),
+        help_text=_('Imagen destacada'),
         blank=True,
         upload_to=get_img_path
     )
-    content = models.TextField(help_text=_(u'Este es el contenido de el Post'),)
+    content = models.TextField(help_text=_('Este es el contenido de el Post'),)
     extract = models.TextField(
         blank=True,
-        help_text=_(u'Este es solo un resumen de el Post que se muestra en la \
+        help_text=_('Este es solo un resumen de el Post que se muestra en la \
         lista de posts'),
     )
     category = models.ForeignKey(
         Category,
-        verbose_name=_(u'Categoría'),
+        verbose_name=_('Categoría'),
         null=True,
         blank=True
     )
-    author = models.ForeignKey(User, verbose_name=_(u'Autor'))
+    author = models.ForeignKey(User, verbose_name=_('Autor'))
     published_at = models.DateTimeField(
-        verbose_name=_(u'Fecha de publicación')
+        verbose_name=_('Fecha de publicación')
     )
-    likes = models.PositiveIntegerField(verbose_name=_(u'Likes'), default=0)
+    likes = models.PositiveIntegerField(verbose_name=_('Likes'), default=0)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = _(u'Posts')
-        verbose_name_plural = _(u'Posts')
+        verbose_name = _('Posts')
+        verbose_name_plural = _('Posts')
         ordering = ["-created_at"]
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s" % (self.title,)
 
     def get_admin_url(self):
