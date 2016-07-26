@@ -4,7 +4,8 @@ from django.test import TestCase
 from django_gravatar.helpers import has_gravatar
 from model_mommy import mommy
 
-from blog.models import Post
+from blog.mommy_recipes import unique_post
+
 from .models import Profile
 
 
@@ -38,10 +39,10 @@ class ProfileViewTestCase(TestCase):
     def setUp(self):
         self.user = mommy.make(User, username='test', email='me@netoxico.com')
         self.profile = mommy.make(Profile, user=self.user)
-        self.post1 = mommy.make(Post, author=self.user)
-        self.post2 = mommy.make(Post, author=self.user)
-        self.post3 = mommy.make(Post, author=self.user)
-        self.post4 = mommy.make(Post, author=self.user, is_active=False)
+        self.post1 = unique_post.make(author=self.user)
+        self.post2 = unique_post.make(author=self.user)
+        self.post3 = unique_post.make(author=self.user)
+        self.post4 = unique_post.make(author=self.user, is_active=False)
 
     def test_get_profile(self):
         response = self.client.get(self.profile.get_absolute_url())
