@@ -1,0 +1,23 @@
+<div class="row">
+  <nav>
+    <ul class="pagination">
+      {% if objects.has_previous %}
+        <li>
+          <a href="?page={{ objects.previous_page_number }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      <li><a href="#">{{ objects.number }}</a></li>
+
+      {% if objects.has_next %}
+        <li>
+          <a href="?page={{ objects.next_page_number }}" aria-label="Siguiente">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div><!-- End pagination -->
