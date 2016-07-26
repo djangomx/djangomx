@@ -53,6 +53,7 @@ STATICFILES_FINDERS = (
 
 
 MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -111,6 +112,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'django_markdown',
     'django_nose',
+    'opbeat.contrib.django',
 
     'blog',
     'contact',
@@ -140,6 +142,10 @@ LOGGING = {
         },
     },
     "handlers": {
+        "opbeat": {
+            "level": "WARNING",
+            "class": "opbeat.contrib.django.handlers.OpbeatHandler",
+        },
         "mail_admins": {
             "level": "ERROR",
             "include_html": True,
@@ -158,10 +164,17 @@ LOGGING = {
             "level": "ERROR",
             "propagate": False,
         },
-    }
+        "opbeat.errors": {
+            "level": "ERROR",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
 }
 
-DEFAULT_FROM_EMAIL = 'Django Mexico <noreply@django.mx>'
+DEFAULT_FROM_EMAIL = 'noreply@django.mx'
+
+NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
 
 # sorl-thumbnail settings
 THUMBNAIL_DEBUG = True
@@ -184,4 +197,9 @@ NOSE_ARGS = [
     '-s',
 ]
 
-NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
+# opbeat settings
+OPBEAT = {
+    'ORGANIZATION_ID': '9652e6f850dd4856857cc34028a163a6',
+    'APP_ID': '9f9c5def57',
+    'SECRET_TOKEN': '4c8c3b73ae8bf4c66945cceac29163752cabe53f',
+}

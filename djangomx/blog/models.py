@@ -1,4 +1,7 @@
 # coding: utf-8
+from __future__ import unicode_literals
+from django.utils.encoding import python_2_unicode_compatible
+
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
@@ -11,20 +14,20 @@ from core.utils import generate_filepath, truncated_slugify
 from .managers import PostManager
 
 
+@python_2_unicode_compatible
 class Category(TimeStamppedModel):
     """ A categories to add to posts. """
-    title = models.CharField(verbose_name=_(u'Título'), max_length=50)
+    title = models.CharField(verbose_name=_('Título'), max_length=50)
     slug = models.SlugField(editable=False, max_length=50, unique=True)
-    description = models.CharField(verbose_name=_(u'Descripción'), max_length=255, blank=True)
-
+    description = models.CharField(verbose_name=_('Descripción'), max_length=255, blank=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = _(u'Categoría')
-        verbose_name_plural = _(u'Categorías')
+        verbose_name = _('Categoría')
+        verbose_name_plural = _('Categorías')
 
-    def __unicode__(self):
-        return unicode(self.title)
+    def __str__(self):
+        return "%s" % (self.title,)
 
     def save(self, *args, **kwargs):
         self.slug = truncated_slugify(self.title, 50)
@@ -34,17 +37,17 @@ class Category(TimeStamppedModel):
         return reverse('blog:category', kwargs={'category_slug': self.slug})
 
 
+@python_2_unicode_compatible
 class Post(TimeStamppedModel):
     """ A blog post. """
-    title = models.CharField(verbose_name=_(u'Título'), max_length=75)
+    title = models.CharField(verbose_name=_('Título'), max_length=75)
     slug = models.SlugField(editable=False, max_length=75, unique=True)
-    description = models.TextField(blank=True, null=True, help_text=u'Descripción usada para SEO')
-    image = models.ImageField(verbose_name=_(u'Imagen'), help_text=_(u'Imagen destacada'), blank=True, upload_to=generate_filepath('blog'))
-    content = models.TextField(help_text=_(u'Este es el contenido de el Post'))
+    description = models.TextField(blank=True, null=True, help_text='Descripción usada para SEO')
+    image = models.ImageField(verbose_name=_('Imagen'), help_text=_('Imagen destacada'), blank=True, upload_to=generate_filepath('blog'))
+    content = models.TextField(help_text=_('Este es el contenido de el Post'))
     category = models.ForeignKey(Category, null=True, blank=True, related_name='post')
-    author = models.ForeignKey(User, verbose_name=_(u'Autor'), related_name='post')
-    likes = models.PositiveIntegerField(verbose_name=_(u'Likes'), default=0)
-
+    author = models.ForeignKey(User, verbose_name=_('Autor'), related_name='post')
+    likes = models.PositiveIntegerField(verbose_name=_('Likes'), default=0)
     is_active = models.BooleanField(default=True)
 
     objects = PostManager()
@@ -52,8 +55,8 @@ class Post(TimeStamppedModel):
     class Meta:
         ordering = ["-created_at"]
 
-    def __unicode__(self):
-        return unicode(self.title)
+    def __str__(self):
+        return "%s" % (self.title,)
 
     def save(self, *args, **kwargs):
         self.slug = truncated_slugify(self.title)
