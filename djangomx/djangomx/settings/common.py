@@ -142,6 +142,10 @@ LOGGING = {
         },
     },
     "handlers": {
+        "opbeat": {
+            "level": "WARNING",
+            "class": "opbeat.contrib.django.handlers.OpbeatHandler",
+        },
         "mail_admins": {
             "level": "ERROR",
             "include_html": True,
@@ -160,10 +164,15 @@ LOGGING = {
             "level": "ERROR",
             "propagate": False,
         },
-    }
+        "opbeat.errors": {
+            "level": "ERROR",
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
 }
 
-DEFAULT_FROM_EMAIL = 'Django Mexico <noreply@django.mx>'
+DEFAULT_FROM_EMAIL = 'noreply@django.mx'
 
 NOTIFICATION_EMAIL = SECRETS.get('notification_email', 'me@netoxico.com')
 
