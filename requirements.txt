@@ -15,7 +15,6 @@ django-suit-redactor==0.0.2
 Unipath==1.1
 Pillow==2.8.1
 mailchimp==2.0.9
-psycopg2==2.6
 django-markdown
 Pygments
 model-mommy==1.2.5
