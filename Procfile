@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath djangomx djangomx.wsgi --log-file -

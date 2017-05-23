@@ -3,6 +3,7 @@ import os
 import json
 from unipath import FSPath as Path
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+import dj_database_url
 
 BASE_DIR = Path(__file__).absolute().parent.parent.parent
 
@@ -86,14 +87,11 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': SECRETS.get('db_name', ''),
-        'USER': SECRETS.get('db_user', ''),
-        'PASSWORD': SECRETS.get('db_password', ''),
-        'HOST': SECRETS.get('db_host', ''),
-    }
+    'default': {}
 }
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 INSTALLED_APPS = [
     'suit',
